@@ -80,40 +80,76 @@ E ∝ C_z^0.94 × β_a^-0.09  (R² = 0.96)
 ## Repository Structure
 
 ```
-fractalFatigue/
+fractalFatigueGeo/
+├── code/
+│   ├── simulations/
+│   │   ├── sim05_vehicle_ensemble_validation.py  # 100 vehicle ensemble
+│   │   ├── vehicle_library.py                    # Vehicle parameters
+│   │   ├── fractal_terrain_generator.py          # Terrain generation
+│   │   ├── vehicle_dynamics_simulator.py         # Quarter-car dynamics
+│   │   └── fatigue_analysis.py                   # Fatigue calculations
+│   ├── analysis/
+│   │   ├── analyze_ensemble_results.py           # Ensemble statistics
+│   │   ├── analyze_ensemble_summary.py           # Summary analysis
+│   │   ├── improve_lidar_correlation.py          # LiDAR validation
+│   │   ├── verify_all_equations_sympy.py         # Symbolic verification
+│   │   └── calculate_proper_confidence_intervals.py
+│   ├── validation/
+│   │   ├── complete_real_world_validation.py     # Full validation
+│   │   ├── corrected_spectral_validation.py      # Spectral validation
+│   │   ├── fixed_terrain_validation.py           # Terrain validation
+│   │   └── vehicle_only_spectral_validation.py   # Vehicle validation
+│   └── figure_generation/
+│       ├── create_amplitude_coupling_figure.py
+│       ├── create_beta_theory_validation_figure.py
+│       ├── create_mechanistic_pipeline_figure.py
+│       ├── create_spectral_interaction_figure.py
+│       ├── create_figure3_revised.py
+│       ├── create_figure3_two_parameter_model.py
+│       ├── create_figure3_universal_scaling.py
+│       ├── create_ensemble_collapse_figures.py
+│       └── create_real_world_validation_figure.py
+├── data/
+│   ├── simulation_results/
+│   │   ├── three_vehicle_validation_results.csv  # 1500 simulations
+│   │   ├── vehicle_ensemble_results.csv          # 18,000 simulations
+│   │   ├── advanced_spectral_results.csv         # Spectral analysis
+│   │   └── fractal_analysis_results.csv          # Fractal analysis
+│   └── real_world/
+│       ├── fixed_terrain_validation.csv          # LiDAR (13 regions)
+│       ├── terrain_spectral_validation.csv       # Terrain spectra
+│       ├── vehicle_spectral_analysis.csv         # Vehicle (8,609 segments)
+│       ├── real_world_validation_results.csv     # Summary results
+│       └── multiscale_consistency.csv            # Multiscale validation
+├── figures/
+│   ├── figure1_beta_D_relationship.png
+│   ├── theoretical_validation.png
+│   ├── three_vehicle_universality.png
+│   ├── spectral_framework_validation.png
+│   ├── two_parameter_model_validation.png
+│   ├── mechanistic_pipeline.png
+│   ├── beta_theory_validation.png
+│   ├── amplitude_complexity_coupling.png
+│   ├── spectral_interaction_mssp.png
+│   ├── real_world_validation.png
+│   ├── corrected_spectral_validation.png
+│   ├── frequency_dependence_investigation.png
+│   ├── TWO_PARAMETER_FRAMEWORK.png
+│   ├── SI_energy_vs_D_generator_coupling.png
+│   └── SI_TWO_PARAMETER_ANALYSIS.png
 ├── manuscripts/
 │   ├── arxiv_manuscript_combined.tex
 │   ├── arxiv_manuscript_combined.pdf
 │   ├── nature_communications_manuscript.tex
 │   └── nature_communications_manuscript.pdf
-├── figures/
-│   ├── theoretical_validation.png
-│   ├── figure1_beta_D_relationship.png
-│   ├── three_vehicle_universality.png
-│   ├── spectral_framework_validation.png
-│   ├── mechanistic_pipeline.png
-│   └── beta_theory_validation.png
-├── code/
-│   ├── simulations/
-│   │   ├── sim05_vehicle_ensemble_validation.py
-│   │   ├── vehicle_library.py
-│   │   └── fractal_terrain_generator.py
-│   ├── analysis/
-│   │   ├── analyze_ensemble_results.py
-│   │   ├── improve_lidar_correlation.py
-│   │   └── verify_all_equations_sympy.py
-│   └── validation/
-│       ├── complete_real_world_validation.py
-│       └── corrected_spectral_validation.py
-├── data/
-│   ├── simulation_results/
-│   │   ├── three_vehicle_validation_results.csv
-│   │   ├── vehicle_ensemble_results.csv
-│   │   └── advanced_spectral_results.csv
-│   └── real_world/
-│       ├── lidar_validation_results.csv
-│       └── liracd_vehicle_data.csv
-└── README.md
+├── images/
+│   └── animate-the-sphere-rotating-slowly-with-the-glowin.gif
+├── docs/
+│   └── ARXIV_READY_FOR_SUBMISSION.md
+├── README.md
+├── requirements.txt
+├── LICENSE
+└── .gitignore
 ```
 
 ---
