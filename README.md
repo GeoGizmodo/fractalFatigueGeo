@@ -1,31 +1,27 @@
-# Fractal Terrain Geometry Controls Vehicle Vibration
+# Two-Parameter Spectral Framework for Predicting Terrain-Induced Mechanical Fatigue
 
 ![Rotating Earth](images/animate-the-sphere-rotating-slowly-with-the-glowin.gif)
 
-## Two-Parameter Spectral Framework for Predicting Terrain-Induced Mechanical Fatigue
-
-[![arXiv](https://img.shields.io/badge/arXiv-2026.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2026.XXXXX)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Key Findings](#key-findings)
 - [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
-- [Manuscripts](#manuscripts)
 - [Data](#data)
 - [Citation](#citation)
 - [Authors](#authors)
 - [License](#license)
+- [Contact](#contact)
 
 ---
 
-## 🌍 Overview
+## Overview
 
 Terrain-induced mechanical wear remains unpredictable despite decades of vehicle dynamics research. This work establishes a **two-parameter spectral framework** that connects terrain geometry to vehicle vibration and mechanical fatigue through rigorous physics-based derivation and comprehensive validation.
 
@@ -46,7 +42,7 @@ Fractal dimension provides the geometric basis for spectral slope through the re
 
 ---
 
-## 🔬 Key Findings
+## Key Findings
 
 ### 1. Two-Parameter Model
 ```
@@ -81,14 +77,13 @@ E ∝ C_z^0.94 × β_a^-0.09  (R² = 0.96)
 
 ---
 
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 fractalFatigue/
 ├── manuscripts/
-│   ├── arxiv_manuscript_combined.tex    # Complete arXiv manuscript
-│   ├── arxiv_manuscript_combined.pdf    # Compiled PDF
+│   ├── arxiv_manuscript_combined.tex
+│   ├── arxiv_manuscript_combined.pdf
 │   ├── nature_communications_manuscript.tex
 │   └── nature_communications_manuscript.pdf
 ├── figures/
@@ -118,28 +113,23 @@ fractalFatigue/
 │   └── real_world/
 │       ├── lidar_validation_results.csv
 │       └── liracd_vehicle_data.csv
-├── docs/
-│   ├── ARXIV_READY_FOR_SUBMISSION.md
-│   ├── GITHUB_COMMIT_MESSAGE.md
-│   └── verification_scripts/
 └── README.md
 ```
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Requirements
 - Python 3.9+
-- LaTeX distribution (for manuscript compilation)
 - Required Python packages (see `requirements.txt`)
 
 ### Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/GeoGizmodo/fractalFatigue.git
-cd fractalFatigue
+git clone https://github.com/GeoGizmodo/fractalFatigueGeo.git
+cd fractalFatigueGeo
 
 # Create virtual environment
 python -m venv venv
@@ -162,12 +152,12 @@ sympy>=1.8
 
 ---
 
-## 🎯 Quick Start
+## Quick Start
 
 ### Run Monte Carlo Validation
 
 ```python
-from simulations import sim05_vehicle_ensemble_validation
+from code.simulations import sim05_vehicle_ensemble_validation
 
 # Run ensemble validation (100 vehicles, 18,000 simulations)
 results, vehicles = sim05_vehicle_ensemble_validation.run_ensemble_validation()
@@ -179,7 +169,7 @@ sim05_vehicle_ensemble_validation.analyze_and_plot_results(results, vehicles)
 ### Verify Equations
 
 ```python
-from analysis import verify_all_equations_sympy
+from code.analysis import verify_all_equations_sympy
 
 # Symbolically verify all manuscript equations
 verify_all_equations_sympy.verify_all_equations()
@@ -188,7 +178,7 @@ verify_all_equations_sympy.verify_all_equations()
 ### Analyze Real-World Data
 
 ```python
-from validation import complete_real_world_validation
+from code.validation import complete_real_world_validation
 
 # Run LiDAR and vehicle sensor validation
 complete_real_world_validation.run_complete_validation()
@@ -196,39 +186,7 @@ complete_real_world_validation.run_complete_validation()
 
 ---
 
-## 📄 Manuscripts
-
-### arXiv Preprint (Primary)
-
-**File**: `manuscripts/arxiv_manuscript_combined.tex`
-
-Complete manuscript with integrated supplementary information, ready for arXiv submission.
-
-**Compile**:
-```bash
-cd manuscripts
-pdflatex arxiv_manuscript_combined.tex
-bibtex arxiv_manuscript_combined
-pdflatex arxiv_manuscript_combined.tex
-pdflatex arxiv_manuscript_combined.tex
-```
-
-### Nature Communications Version
-
-**File**: `manuscripts/nature_communications_manuscript.tex`
-
-Formatted for Nature Communications submission (if pursuing high-impact journal).
-
-### Target Journals
-
-1. **arXiv** (immediate preprint)
-2. **Mechanical Systems and Signal Processing** (primary target)
-3. **Journal of Sound and Vibration** (alternative)
-4. **Nature Communications** (if expanded validation)
-
----
-
-## 📊 Data
+## Data
 
 ### Simulation Data
 
@@ -253,18 +211,17 @@ Real-world validation data in `data/real_world/`:
 
 ---
 
-
-## 📖 Citation
+## Citation
 
 If you use this work in your research, please cite:
 
 ```bibtex
 @article{zare2026fractal,
-  title={Fractal Terrain Geometry Controls Vehicle Vibration Through Two-Parameter Spectral Framework},
+  title={Two-Parameter Spectral Framework for Predicting Terrain-Induced Mechanical Fatigue},
   author={Zare, Alex and Meredith, Stanislava and Hariharan, Aneesh},
-  journal={arXiv preprint arXiv:2026.XXXXX},
+  journal={Submitted for Publication},
   year={2026},
-  institution={GeoGizmodo LLC Research Division}
+  institution={GeoGizmodo LLC}
 }
 ```
 
@@ -277,24 +234,24 @@ If you use this work in your research, please cite:
 
 ---
 
-## 👥 Authors
+## Authors
 
 **Alex Zare**  
 GeoGizmodo LLC Research Division  
 Tacoma, Washington, USA
 
 **Stanislava Meredith**  
-GeoGizmodo LLC Research Division  
+GeoGizmodo LLC Product Division  
 Tacoma, Washington, USA
 
 **Aneesh Hariharan** (Corresponding Author)  
 GeoGizmodo LLC Research Division  
 Tacoma, Washington, USA  
-📧 aneesh@geogizmodo.ai
+Email: hello@geogizmodo.ai
 
 ---
 
-## 🏢 Funding
+## Funding
 
 This work was supported by the United States Air Force SBIR Program:
 
@@ -304,11 +261,9 @@ This work was supported by the United States Air Force SBIR Program:
 
 ---
 
-## 📜 License
+## License
 
-### Code
-
-All simulation and analysis code is released under the **MIT License**:
+All simulation and analysis code is released under the **MIT License**.
 
 ```
 MIT License
@@ -334,36 +289,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-### Manuscript
-
-The manuscript will be released under an appropriate open access license upon publication.
-
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Please see `CONTRIBUTING.md` for guidelines.
-
-### Areas for Contribution
-
-1. **Expanded Validation**: Additional terrain types, vehicle configurations
-2. **Real-World Data**: More LiDAR regions, vehicle sensor datasets
-3. **Model Extensions**: Multi-axle vehicles, 3D terrain effects
-4. **Applications**: Route optimization algorithms, maintenance scheduling tools
-
----
-
-## 📞 Contact
+## Contact
 
 For questions, collaborations, or access to additional data:
 
-**Email**: aneesh@geogizmodo.ai  
+**Email**: hello@geogizmodo.ai  
 **Website**: https://geogizmodo.ai  
-**GitHub**: https://github.com/GeoGizmodo/fractalFatigue
+**GitHub**: https://github.com/GeoGizmodo
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **USAF SBIR Program** for funding support
 - **USGS 3DEP** for LiDAR terrain data
@@ -372,46 +310,21 @@ For questions, collaborations, or access to additional data:
 
 ---
 
-## 📚 Additional Resources
-
-### Documentation
-- [arXiv Submission Guide](docs/ARXIV_READY_FOR_SUBMISSION.md)
-- [Verification Scripts](docs/verification_scripts/)
-- [Equation Verification](code/analysis/verify_all_equations_sympy.py)
-
-### Related Work
-- [GeoGizmodo Research](https://geogizmodo.ai/research)
-- [USAF SBIR Program](https://www.afsbirsttr.af.mil/)
-
----
-
-## 🔄 Version History
-
-### v1.0.0 (March 2026) - Initial Release
-- Complete arXiv manuscript
-- Monte Carlo validation (1500 simulations)
-- Ensemble validation (18,000 simulations)
-- Real-world validation (LiDAR + vehicle data)
-- All code and data
-
----
-
-## ⚠️ Disclaimer
+## Disclaimer
 
 This work was supported by the United States Air Force under Contract FA860425CB079. The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies or endorsements, either expressed or implied, of the United States Air Force or the U.S. Government.
 
 ---
 
-**Last Updated**: March 11, 2026  
-**Status**: Ready for arXiv Submission  
-**Repository**: https://github.com/GeoGizmodo/fractalFatigue.git
+**Last Updated**: March 12, 2026  
+**Repository**: https://github.com/GeoGizmodo/fractalFatigueGeo
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by GeoGizmodo Research Division**
+**GeoGizmodo Research Division**
 
-[Website](https://geogizmodo.ai) • [Email](mailto:aneesh@geogizmodo.ai) • [GitHub](https://github.com/GeoGizmodo)
+[Website](https://geogizmodo.ai) • [Email](mailto:hello@geogizmodo.ai) • [GitHub](https://github.com/GeoGizmodo)
 
 </div>
