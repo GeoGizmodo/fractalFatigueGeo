@@ -1,0 +1,143 @@
+% Point-by-Point Response to Reviewers
+% Manuscript: "Universal spectral scaling of terrain-induced fatigue"
+% Journal: Nature Communications
+% Handling Editor: Dr. Shuyan Xiong
+%
+% Conventions used in this document:
+%   - Reviewer comments are quoted verbatim in italics
+%   - Our responses follow immediately, in plain text
+%   - "Revised manuscript, [location]" directs the reviewer to the specific change
+%   - New or changed text from the manuscript is shown inline in \textbf{bold}
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+\onehalfspacing
+
+\newcommand{\revquote}[1]{\medskip\noindent\textit{``#1''}\medskip}
+\newcommand{\revloc}[1]{\noindent\textbf{Location in revised manuscript:} #1\medskip}
+
+\begin{document}
+
+\begin{center}
+{\large\bfseries Point-by-Point Response to Reviewers}\\[6pt]
+\textit{Universal spectral scaling of terrain-induced fatigue}\\[4pt]
+Nature Communications\\[4pt]
+\end{center}
+
+\noindent We thank the three reviewers and the handling editor for their careful and constructive reading of the manuscript. The comments collectively identify real gaps that we have addressed through manuscript revision, additional analysis, and clarification of scope. We respond to each comment in turn below, quoting the reviewer verbatim and providing our response. All changes in the revised manuscript are highlighted in blue.
+
+\bigskip\noindent\rule{\textwidth}{0.4pt}
+
+% ==============================================================
+\section*{Reviewer \#1}
+% ==============================================================
+
+\noindent Reviewer \#1 raised six technical issues and three formatting/presentation issues. We address each below.
+
+\bigskip
+
+% --------------------------------------------------------------
+\subsection*{Technical Issue (1) — ISO 8608 comparison}
+% --------------------------------------------------------------
+
+\revquote{The manuscript establishes a fractal-based framework. However, a straightforward approach would be to directly generate road profiles from ISO 8608 and then use them as input to excite a quarter-car model for calculating vibration energy and fatigue damage. The authors should clarify what quantifiable advantages the proposed fractal framework offers over the direct use of ISO 8608 parameters, in terms of prediction accuracy, scope of applicability, or practical operability.}
+
+\noindent\textbf{Response.} We thank the reviewer for raising this point. In retrospect, we did not adequately distinguish the proposed framework from the ISO~8608 direct-simulation pipeline, and the reviewer is correct that this needed to be addressed explicitly. We have revised the manuscript in two places.
+
+The structural parallel between the two approaches is real and should be acknowledged: ISO~8608 models road PSD as $G_d(n) = G_d(n_0)(n/n_0)^{-w}$, where $G_d(n_0)$ is a spectral amplitude and $w$ is a waviness exponent. Our $(C_z,\beta)$ framework uses identical two-parameter PSD logic, with $C_z \leftrightarrow G_d(n_0)$ and $\beta \leftrightarrow w$. The difference lies not in the mathematical form but in what each approach can do \emph{before} a vehicle has traversed the terrain.
+
+We identify three concrete advantages, the first two of which are straightforwardly quantifiable; the third describes improved explanatory power relative to amplitude-only roughness descriptors rather than a direct head-to-head ISO~8608 benchmark:
+
+\begin{enumerate}[leftmargin=*, label=(\roman*)]
+
+\item \textbf{Predictive capability from remote sensing alone.}
+ISO~8608 requires a profilometer measurement to determine $w$ for a given surface; in the absence of measurement data, the standard fixes $w \approx 2$ as an empirical constant. Our framework derives $\beta$ from terrain geometry via $\beta = 7-2D$, so spectral slope can be predicted from any digital elevation model without in-situ instrumentation. This is the primary practical advantage for the intended application domain: off-road military operations, planetary rover missions, and pre-deployment route planning where profilometer access is unavailable.
+
+\item \textbf{Scope: natural terrain beyond engineered road classes.}
+ISO~8608 road classes (A--H) were calibrated on paved and graded surfaces. They do not extend to natural terrain---mountains, desert washes, off-road military routes---where no road classification exists. Our framework was specifically developed and validated for this domain (13 USGS 3DEP LiDAR regions spanning flat plains to high-relief mountain terrain, $r = -0.62$, $p < 0.05$). We explicitly note that the framework is \emph{not} intended to replace ISO~8608 for maintained paved roads where profilometer data are available; it extends predictive capability to the domain ISO~8608 does not cover.
+
+\item \textbf{Improved explanatory power relative to amplitude-only roughness descriptors.}
+Standard ISO~8608 practice classifies roads by amplitude alone, fixing $w \approx 2$. Explicitly fitting both parameters ($C_z$ and $\beta$) improves prediction of vibration energy from $R^2 = 0.91$ (amplitude-only) to $R^2 = 0.96$ in our simulations. This improvement represents a measurable reduction in residual variance that propagates through the nonlinear S--N relationship and can materially affect fatigue-life estimates, given that $N_f \propto E^{-m/2}$ with $m$ typically ranging from 3 to 10 for relevant materials.
+
+\end{enumerate}
+
+\noindent A new comparison table (Table~2 in the revised manuscript) summarises these distinctions side by side. We note that the $R^2 = 0.91$ entry in the table refers to the amplitude-only single-parameter baseline from our own simulations (Fig.~4d), not to a dedicated ISO~8608 simulation; the table label makes this explicit (``amplitude-only baseline'') to avoid any implication of a direct head-to-head comparison with ISO~8608 profilometer data.
+
+We have also moderated language around fatigue claims throughout the manuscript. Where the original text claimed ``quantitative fatigue predictions'' or ``accurate fatigue prediction'' from DEM data alone, the revised text uses ``quantitative vibration-severity estimates,'' ``pre-deployment fatigue-risk proxies,'' or ``accurate prediction of vibration severity and fatigue risk'' --- language consistent with the actual chain of evidence: terrain PSD $\rightarrow$ vibration energy $\rightarrow$ fatigue-damage proxy, without implying a validated absolute fatigue-life number. The phrase ``enabling accurate fatigue prediction for any vehicle given its natural frequency'' (extended vehicle ensemble section) has similarly been revised to ``enabling estimation of relative fatigue-risk trends across vehicle classes with known natural frequency.'' The $R^2 = 0.91 \rightarrow 0.96$ improvement is described as a ``measurable'' rather than ``substantial'' reduction in residual variance, consistent with the reviewer's own observation that the 5-point gain may not be a game-changing improvement in isolation.
+
+We have also taken care not to overstate the comparison. The $R^2$ improvement from 0.91 to 0.96 comes from existing simulation data (Fig.\ 4d in the original manuscript) comparing single-parameter and two-parameter fits; it is not a new dedicated simulation. Furthermore, the DEM-based predictions are validated on natural terrain but explicitly shown to fail on flat paved urban roads (Copenhagen, Fig.\ 6), consistent with the domain boundaries described above.
+
+\revloc{Introduction, new paragraph 4 (blue); Discussion, new subsection ``Relationship to ISO~8608 and prediction accuracy'' including Table~2 (blue).}
+
+\bigskip
+
+% --------------------------------------------------------------
+\subsection*{Technical Issue (2) — Vehicle independence vs.\ frequency dependence (Figures 3 and 5)}
+% --------------------------------------------------------------
+
+\revquote{Figure 3 uses only three vehicle examples (A, B, and C) with similar frequencies, and based on this, the manuscript concludes that the results are only weakly influenced by vehicle selection. However, the results shown in Figure 5 appear to be frequency-dependent. Taken together, Figures 3 and 5 do not support the claim that the proposed framework is largely insensitive to vehicle selection. The statement in the abstract that the framework is vehicle-independent may therefore be misleading.}
+
+\noindent\textbf{Response.} We agree with the reviewer. The original manuscript overstated vehicle independence, and the contradiction between Figures~3 and~5 is real. We have revised the manuscript throughout to remove the claim of vehicle independence and replace it with the more accurate characterisation: \emph{terrain-dominated, with predictable frequency-dependent modulation}.
+
+The distinction the reviewer identifies is precise: Figure~3 uses three vehicles spanning only a narrow natural frequency range (0.89--0.98 Hz). Within that narrow band, vehicle type explains only 2.0\% of energy variance, and the scaling exponent varies by less than 2\% (CV = 1.4\%). This is accurately described as \emph{weak} vehicle sensitivity within the tested range, not as vehicle independence in general. Figure~5, by contrast, spans 100 vehicles from 0.80 to 2.49 Hz, and shows clear systematic frequency dependence ($\gamma = 0.36f_n - 2.93$, $R^2 = 0.879$). These two results are fully consistent with each other: the apparent vehicle independence in Figure~3 is a consequence of the narrow frequency range tested, not a general property of the framework. This is now made explicit in the manuscript.
+
+Specific changes made:
+
+\begin{itemize}[leftmargin=*]
+\item Abstract: ``vehicle configuration explains only 2.0\%'' is now qualified as ``within the three-vehicle narrow-frequency comparison (0.89--0.98 Hz); broader ensemble simulations reveal systematic natural-frequency modulation.''
+\item Introduction: ``vehicle-independent scaling law'' replaced with ``terrain-dominated scaling law \ldots with natural frequency providing predictable modulation.''
+\item Results (energy scaling section): ``vehicle-independent scaling'' replaced with ``terrain-dominated scaling \ldots within the narrow frequency range 0.89--0.98 Hz.''
+\item Results (variance decomposition): ``vehicle-independent terrain severity index'' replaced with ``terrain-dominated severity index \ldots with the caveat that natural frequency modulates the scaling exponent predictably across a broader vehicle ensemble.''
+\item Discussion opening: ``vehicle-independent scaling'' replaced with ``terrain-dominated scaling.''
+\item Discussion: ``largely vehicle-independent predictions'' replaced with ``terrain-dominated predictions with predictable frequency-dependent modulation once vehicle natural frequency is known.''
+\item Universality paragraph: removed claim that the exponent is ``remarkably insensitive to vehicle parameters''; replaced with explicit acknowledgement that the narrow-frequency result and broad-ensemble result are complementary.
+\end{itemize}
+
+No new simulations are required to address this comment. The evidence needed to support the revised framing is already present in Figures~3 and~5; the issue was one of interpretation and language, not missing data.
+
+\revloc{Abstract (sentence 3); Introduction paragraph 6; Results subsection ``Energy scaling law derivation and validation,'' final paragraph; Results subsection ``Universal scaling and multi-vehicle validation,'' Table~1 caption paragraph; Discussion opening paragraph; Discussion ``scaling exponent'' paragraph; Discussion ``universality'' paragraph. All changes highlighted in blue.}
+
+\bigskip
+
+% --------------------------------------------------------------
+\subsection*{Technical Issue (3) — Slope discrepancy between Figures 2 and 3}
+% --------------------------------------------------------------
+
+\revquote{The fitted slopes in Figures 2 and 3 differ by a factor of two ($-1.59$ vs.\ $-3.18$), yet the two fittings appear to correspond to the same regression, since $R^2$, $r$, and $n$ are exactly identical. This inconsistency needs to be explained.}
+
+\noindent\textbf{Response.} The reviewer correctly identifies a genuine inconsistency in the original manuscript. We thank them for catching this. The two slopes describe \emph{different regressions}, but the original text and Figure~3 legend did not make this clear --- in fact, Figure~3 panel (a) was mislabelled.
+
+The correct interpretation is as follows:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Figure~2, slope $-1.59$:} regression of the vehicle acceleration \emph{spectral exponent} $\beta_a$ on fractal dimension $D$, i.e., $\beta_a = -1.59 \cdot D + 4.69$ ($R^2 = 0.913$, $r = -0.956$, $n = 1500$).
+
+\item \textbf{Figure~3 panel (a), slope $-3.11$:} regression of log \emph{vibration energy} $\log E$ on $D$, i.e., $E \propto (D-2)^{-3.11}$ ($R^2 = 0.915$, $n = 1500$). This is the energy--fractal-dimension scaling, consistent with the amplitude-complexity coupling $E \propto (D-2)^{-3.1}$ reported throughout the paper.
+\end{itemize}
+
+The coincidence of identical $R^2$, $r$, and $n$ values across both figures in the original text was a transcription error: the Figure~3 legend mistakenly carried over the statistics from Figure~2 rather than those from the actual energy regression. The underlying physics is consistent: $\beta_a$ vs $D$ has slope $-1.59$ (spectral slope, suspension-filtered, $R^2 = 0.913$); $\log E$ vs $D$ has slope $-3.11$ (energy scaling, $R^2 = 0.915$). These are different regressions with slightly different goodness-of-fit. In the revised Figure~3 legend we report only the energy regression statistic ($R^2 = 0.915$) and explicitly distinguish it from Figure~2, removing the copied $r$ and confidence interval values that belonged to the spectral-exponent regression.
+
+We have corrected the Results text, Figure~3 caption, and Figure~3 legend to clearly identify panel (a) as the \emph{energy--fractal-dimension} plot, distinguish it explicitly from the spectral-slope regression in Figure~2, and explain why the two slopes differ.
+
+\revloc{Results subsection ``Energy scaling law derivation and validation,'' paragraph beginning ``Figure~3 validates\ldots''; Figure Legends, Figure~3 panel (a) description. Both corrected in the revised manuscript.}
+
+\bigskip
+
+% [Additional Reviewer 1 comments will be added here as we work through them]
+
+% ==============================================================
+% \section*{Reviewer \#2}
+% ==============================================================
+% [To be added]
+
+% ==============================================================
+% \section*{Reviewer \#3}
+% ==============================================================
+% [To be added]
+
+\end{document}
