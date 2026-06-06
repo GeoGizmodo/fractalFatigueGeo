@@ -17,7 +17,7 @@
 
 \vspace{0.5cm}
 
-{\large Universal spectral scaling of terrain-induced fatigue}
+{\large Spectral scaling of natural-terrain-induced fatigue}
 
 \vspace{0.5cm}
 
@@ -741,7 +741,7 @@ This is spectral filtering: the vehicle transfer function acts as a bandpass fil
 The frequency dependence does not invalidate the terrain-dominated framework. Instead, it refines it:
 
 \begin{enumerate}
-\item \textbf{Terrain still dominates}: Terrain geometry explains 95.1\% of variance; frequency modulates the remaining variation.
+\item \textbf{Terrain still dominates}: Terrain geometry explains 93.5\% of variance; frequency modulates the remaining variation.
 
 \item \textbf{Predictable correction}: The relationship $\gamma(f_n)$ is linear and deterministic, enabling accurate predictions for any vehicle.
 
@@ -1034,7 +1034,7 @@ Panel a shows the single-parameter model $E \propto (D-2)^\alpha$ with negative 
 \centering
 \includegraphics[width=\textwidth]{figures/SupplementaryFigure3.png}
 \caption{\textbf{Supplementary Figure 3. Detailed two-parameter analysis.} 
-The top row shows mean spectral amplitude $C_z$ (left), spectral exponent $\beta$ (center, with theoretical line $\beta = 7-2D$), and vibration energy (right) as functions of target fractal dimension, with error bars representing variability across 100 realizations per $D$ value. The bottom left panel displays the correlation matrix, revealing strong negative correlation between $D$ and $C_z$ (r = -0.97), which explains why single-parameter models using $D$ appear predictive despite the indirect relationship. The bottom center panel shows partial correlation between energy and $\beta$ after controlling for $C_z$, demonstrating weak residual dependence (R$^2$ = 0.005). The bottom right panel summarizes key findings, confirming that both parameters are needed for accurate prediction.}
+The top row shows mean spectral amplitude $C_z$ (left), spectral exponent $\beta$ (center, with theoretical line $\beta = 7-2D$), and vibration energy (right) as functions of target fractal dimension, with error bars representing variability across 100 realizations per $D$ value. The bottom left panel displays the correlation matrix, revealing strong negative correlation between $D$ and $C_z$ (r = -0.97), which explains why single-parameter models using $D$ appear predictive despite the indirect relationship. The bottom center panel shows partial correlation between energy and $\beta$ after controlling for $C_z$, demonstrating weak residual dependence (R$^2$ = 0.005): in this synthetic dataset with strong amplitude-complexity coupling, $C_z$ captures nearly all energy variance. The scientific value of $\beta$ lies not in independent residual predictive power over $C_z$ in this particular dataset, but in providing the geometric link ($\beta = 7-2D$) that enables DEM-based terrain characterization without direct PSD measurement. The bottom right panel summarizes key findings.}
 \label{fig:two_param_detail}
 \end{figure}
 
@@ -1056,7 +1056,7 @@ To validate the robustness of the terrain-dominated scaling law, we conducted a 
 
 \textbf{Vehicle C (Heavy):} Mass 1200 kg, stiffness 45 kN/m, natural frequency 0.98 Hz
 
-Each vehicle was simulated over 500 terrain realizations (5 fractal dimensions $\times$ 100 realizations), yielding 1500 total simulations. All simulations used identical terrain generation parameters to isolate vehicle effects. The variance decomposition analysis shows that terrain fractal dimension explains 95.1\% of vibration energy variance through the amplitude-complexity coupling in our terrain generation algorithm, while vehicle type accounts for only 2.0\%, with the combined model explaining 97.1\%.
+Each vehicle was simulated over 500 terrain realizations (5 fractal dimensions $\times$ 100 realizations), yielding 1500 total simulations. All simulations used identical terrain generation parameters to isolate vehicle effects. The variance decomposition analysis shows that terrain fractal dimension explains 93.5\% of vibration energy variance through the amplitude-complexity coupling in our terrain generation algorithm, while vehicle type accounts for only 1.9\%, with the combined model explaining 95.4\%.
 
 \subsection{Scaling Results}
 
@@ -1132,13 +1132,67 @@ The opposite signs of the exponents reflect different amplitude-complexity coupl
 
 This sensitivity analysis demonstrates that while the specific exponent values depend on terrain amplitude characteristics, the power-law form and strong correlation between terrain spectral properties and vibration energy persist. For practical applications, this means the two-parameter framework ($C_z$, $\beta$) provides robust prediction across different terrain types, though the relative importance of amplitude versus spectral slope may vary.
 
-\end{document}
 
+\section{Supplementary Note 12: Constant-Amplitude Decoupling Experiment}
 
-\section*{Data and Code Availability}
+\subsection{Motivation}
 
-All code and data will be made available upon publication.
+In the original 1500 simulations, spectral amplitude $C_z$ and spectral slope $\beta$ are strongly correlated ($r = -0.962$) due to the amplitude-complexity coupling inherent in the Diamond-Square terrain generation algorithm. Partial correlation analysis (Supplementary Figure~3) shows that after controlling for $C_z$, $\beta$ explains essentially no residual energy variance ($R^2 = 0.005$). This raises the question of whether spectral structure independently affects vibration energy, or whether $C_z$ alone is a sufficient predictor.
 
-[Code repository URL removed for double-blind review - will be provided to reviewers separately]
+To resolve this, we conducted a decoupling experiment in which terrain amplitude is held exactly constant while spectral structure (fractal dimension $D$, and therefore $\beta = 7-2D$) is varied independently.
+
+\subsection{Methods}
+
+Terrain profiles were generated using the same spectral synthesis method (FractalTerrainGenerator from the project repository) with a critical modification: after generating 2D fractal terrain and extracting the 1D vehicle traverse profile (middle row), the profile RMS amplitude was normalized to a fixed target value of 5.0~m. This ensures that the vehicle excitation input has identical amplitude regardless of fractal dimension, isolating the effect of spectral structure.
+
+\textbf{Simulation parameters:}
+\begin{itemize}
+\item Grid: $512 \times 512$ pixels at 10~m spacing (5120~m domain)
+\item Target fractal dimensions: $D \in \{2.05, 2.15, 2.25, 2.35, 2.45\}$
+\item Realizations: 30 per $D$ value
+\item Vehicles: A (800~kg, 25~kN/m), B (1000~kg, 35~kN/m), C (1200~kg, 45~kN/m)
+\item All vehicles: $\mu = 100$~kg, $k_t = 200{,}000$~N/m, $\zeta = 0.30$
+\item Speed: 15~m/s
+\item Total: 450 simulations (5 $\times$ 30 $\times$ 3)
+\end{itemize}
+
+Vehicle dynamics used the same 2-DOF quarter-car model and scipy odeint integration as the primary simulations.
+
+\subsection{Results}
+
+\textbf{Amplitude verification:} Profile RMS amplitude was exactly 5.0~m for all realizations (CV $< 10^{-14}$\%), confirming perfect decoupling of amplitude from spectral structure.
+
+\textbf{Energy--fractal-dimension relationship at constant amplitude:}
+\begin{equation}
+\log_{10} E = 2.96 \cdot D - 5.49 \quad (R^2 = 0.834,\; r = 0.913,\; p < 10^{-176},\; n = 449)
+\end{equation}
+
+Energy \emph{increases} with $D$ at constant amplitude (positive slope = $+2.96$), opposite to the coupled case (negative slope = $-3.11$). This sign reversal confirms that in the original simulations, the amplitude decrease with $D$ dominated over the spectral structure effect, masking the independent contribution of $\beta$.
+
+\textbf{Per-vehicle consistency:}
+\begin{itemize}
+\item Vehicle A: slope = 2.99, $R^2 = 0.822$, $p = 6.7 \times 10^{-57}$
+\item Vehicle B: slope = 2.99, $R^2 = 0.853$, $p = 1.5 \times 10^{-63}$
+\item Vehicle C: slope = 2.89, $R^2 = 0.841$, $p = 5.3 \times 10^{-61}$
+\end{itemize}
+
+\textbf{Spectral slope confirmation:} $\beta$ vs $D$ regression yields slope = $-1.82$, $R^2 = 0.788$, confirming that spectral structure varies as predicted by $\beta = 7-2D$ even after amplitude normalization.
+
+\subsection{Physical Interpretation}
+
+The positive energy--$D$ relationship at constant amplitude arises from frequency-domain filtering. Higher $D$ produces shallower PSD slope (lower $\beta$), distributing more spectral energy at mid-to-high frequencies near the suspension resonance ($\sim$1~Hz for these vehicles). The vehicle transfer function amplifies energy near resonance, so terrain with more mid-frequency content (higher $D$, lower $\beta$) produces stronger vibration even at the same overall amplitude.
+
+In the original coupled simulations, this effect was overwhelmed by the amplitude-complexity coupling: amplitude decreased so rapidly with $D$ ($C_z \propto (D-2)^{-3.12}$) that the net effect was reduced energy at higher $D$. The decoupling experiment isolates the spectral structure effect and shows it is large ($R^2 = 0.83$), consistent across vehicles, and physically meaningful.
+
+\subsection{Conclusion}
+
+The near-zero exponent on $\beta_a$ in the two-parameter regression ($E \propto C_z^{0.94} \times \beta_a^{-0.09}$) is a collinearity artifact specific to the coupled synthetic dataset. When amplitude is controlled, terrain spectral structure (mediated by fractal dimension through $\beta = 7-2D$) independently explains 83\% of vibration energy variance. This validates the two-parameter framework on physical grounds and demonstrates that both $C_z$ and $\beta$ carry independent, non-redundant information about terrain severity.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/constant_amplitude_decoupling.png}
+\caption{\textbf{Supplementary Figure 5. Constant-amplitude decoupling experiment.} (a)~Vibration energy vs fractal dimension $D$ at fixed RMS amplitude (5.0~m), showing strong positive relationship ($R^2 = 0.834$) across three vehicles. (b)~Mean energy with 95\% CI error bars showing systematic monotonic increase with $D$. (c)~Measured spectral slope $\beta$ vs $D$ confirming that spectral structure varies as predicted ($\beta = -1.82D + 5.87$, $R^2 = 0.788$) despite constant amplitude.}
+\label{fig:decoupling}
+\end{figure}
 
 \end{document}

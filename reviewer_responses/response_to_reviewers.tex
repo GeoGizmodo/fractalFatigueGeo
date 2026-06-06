@@ -25,7 +25,7 @@
 
 \begin{center}
 {\large\bfseries Point-by-Point Response to Reviewers}\\[6pt]
-\textit{Universal spectral scaling of terrain-induced fatigue}\\[4pt]
+\textit{Spectral scaling of natural-terrain-induced fatigue}\\[4pt]
 Nature Communications\\[4pt]
 \end{center}
 
@@ -84,12 +84,12 @@ We have also taken care not to overstate the comparison. The $R^2$ improvement f
 
 \noindent\textbf{Response.} We agree with the reviewer. The original manuscript overstated vehicle independence, and the contradiction between Figures~3 and~5 is real. We have revised the manuscript throughout to remove the claim of vehicle independence and replace it with the more accurate characterisation: \emph{terrain-dominated, with predictable frequency-dependent modulation}.
 
-The distinction the reviewer identifies is precise: Figure~3 uses three vehicles spanning only a narrow natural frequency range (0.89--0.98 Hz). Within that narrow band, vehicle type explains only 2.0\% of energy variance, and the scaling exponent varies by less than 2\% (CV = 1.4\%). This is accurately described as \emph{weak} vehicle sensitivity within the tested range, not as vehicle independence in general. Figure~5, by contrast, spans 100 vehicles from 0.80 to 2.49 Hz, and shows clear systematic frequency dependence ($\gamma = 0.36f_n - 2.93$, $R^2 = 0.879$). These two results are fully consistent with each other: the apparent vehicle independence in Figure~3 is a consequence of the narrow frequency range tested, not a general property of the framework. This is now made explicit in the manuscript.
+The distinction the reviewer identifies is precise: Figure~3 uses three vehicles spanning only a narrow natural frequency range (0.89--0.98 Hz). Within that narrow band, vehicle type explains only 1.9\% of energy variance, and the scaling exponent varies by less than 2\% (CV = 1.4\%). This is accurately described as \emph{weak} vehicle sensitivity within the tested range, not as vehicle independence in general. Figure~5, by contrast, spans 100 vehicles from 0.80 to 2.49 Hz, and shows clear systematic frequency dependence ($\gamma = 0.36f_n - 2.93$, $R^2 = 0.879$). These two results are fully consistent with each other: the apparent vehicle independence in Figure~3 is a consequence of the narrow frequency range tested, not a general property of the framework. This is now made explicit in the manuscript.
 
 Specific changes made:
 
 \begin{itemize}[leftmargin=*]
-\item Abstract: ``vehicle configuration explains only 2.0\%'' is now qualified as ``within the three-vehicle narrow-frequency comparison (0.89--0.98 Hz); broader ensemble simulations reveal systematic natural-frequency modulation.''
+\item Abstract: ``vehicle configuration explains only 2.0\%'' is now qualified as ``within the three-vehicle narrow-frequency comparison (0.89--0.98 Hz); broader ensemble simulations reveal systematic natural-frequency modulation.'' The updated value from the data-verified regression is 1.9\%.
 \item Introduction: ``vehicle-independent scaling law'' replaced with ``terrain-dominated scaling law \ldots with natural frequency providing predictable modulation.''
 \item Results (energy scaling section): ``vehicle-independent scaling'' replaced with ``terrain-dominated scaling \ldots within the narrow frequency range 0.89--0.98 Hz.''
 \item Results (variance decomposition): ``vehicle-independent terrain severity index'' replaced with ``terrain-dominated severity index \ldots with the caveat that natural frequency modulates the scaling exponent predictably across a broader vehicle ensemble.''
@@ -128,7 +128,69 @@ We have corrected the Results text, Figure~3 caption, and Figure~3 legend to cle
 
 \bigskip
 
-% [Additional Reviewer 1 comments will be added here as we work through them]
+% --------------------------------------------------------------
+\subsection*{Technical Issue (4) — Overgeneralization in title and abstract}
+% --------------------------------------------------------------
+
+\revquote{The manuscript states that the proposed framework is not applicable to paved roads. If so, the wording in the title and abstract should be tightened accordingly to avoid overgeneralization.}
+
+\noindent\textbf{Response.} We agree. The manuscript explicitly demonstrates that the DEM-based methodology fails on flat paved urban roads (Copenhagen, Figure~6), making the original title ``Universal spectral scaling of terrain-induced fatigue'' an overgeneralization. We have made two changes:
+
+\begin{enumerate}[leftmargin=*]
+\item Title revised from ``Universal spectral scaling of terrain-induced fatigue'' to ``Spectral scaling of natural-terrain-induced fatigue.'' This directly scopes the claim to the domain where the framework is validated.
+\item Abstract final sentence revised to explicitly state the domain boundary: the framework applies to ``diverse natural terrain conditions where digital elevation models are available'' and ``is not intended for engineered paved surfaces where pavement micro-texture dominates vehicle excitation.''
+\end{enumerate}
+
+\noindent No new simulations are needed; this is a framing correction.
+
+\revloc{Title; Abstract, final sentence; Supplementary title page.}
+
+\bigskip
+
+% --------------------------------------------------------------
+\subsection*{Technical Issue (5) — Whether $C_z$ alone is sufficient (exponent on $\beta_a$ is only $-0.09$)}
+% --------------------------------------------------------------
+
+\revquote{The manuscript claims that the two-parameter framework improves upon the one-parameter framework, but the reported improvement is only about 5\%. Moreover, the exponent of $\beta_a$ is only $-0.09$, which is numerically close to zero. This raises the question of whether $C_z$ alone may already serve as a sufficient predictor.}
+
+\noindent\textbf{Response.} This is a fair observation. In the original coupled dataset, the near-zero exponent on $\beta_a$ ($-0.09$) and partial $R^2 = 0.005$ after controlling for $C_z$ (Supplementary Figure~3) do suggest that $C_z$ alone captures most energy variance. However, this is an artifact of strong collinearity ($r = -0.962$) between $C_z$ and $\beta$ in the Diamond-Square terrain generation, not evidence that spectral slope is physically unimportant.
+
+To directly test this, we conducted a \textbf{new decoupling experiment}: 450 simulations (5 fractal dimensions $\times$ 30 realizations $\times$ 3 vehicles) with terrain profile RMS amplitude held exactly constant (CV $< 10^{-14}$\%) while varying only spectral structure through $D$. The result is definitive:
+
+\begin{itemize}[leftmargin=*]
+\item Energy varies strongly with $D$ at constant amplitude: $\log_{10} E = 2.96 \cdot D - 5.49$, $R^2 = 0.834$, $p < 10^{-176}$, $n = 449$.
+\item Energy \emph{increases} with $D$ (positive slope = +2.96), opposite to the coupled case (slope = $-3.11$), because higher $D$ places more spectral energy near the suspension resonance.
+\item Results are consistent across all three vehicles ($R^2 = 0.82$--$0.85$).
+\item $\beta$ vs $D$ holds at constant amplitude (slope = $-1.82$, $R^2 = 0.79$), confirming spectral structure varies as predicted by $\beta = 7-2D$.
+\end{itemize}
+
+\noindent This demonstrates that the near-zero $\beta$ exponent in the original regression is a collinearity artifact, not a physical irrelevance. When amplitude is controlled, terrain spectral structure (mediated by fractal dimension through $\beta = 7-2D$) independently explains 83\% of energy variance through the spectral filtering mechanism. The two-parameter framework is justified: $C_z$ controls amplitude, $\beta$ controls frequency content relative to the vehicle resonance, and both are needed for complete terrain characterization.
+
+\revloc{Discussion, revised paragraph ``Role of spectral slope $\beta$ in the two-parameter model'' (substantially expanded with new decoupling results). New supplementary figure: constant-amplitude decoupling analysis.}
+
+\revloc{Discussion, new paragraph ``Role of spectral slope $\beta$ in the two-parameter model.''}
+
+\bigskip
+
+% --------------------------------------------------------------
+\subsection*{Technical Issue (6) — Single speed (15 m/s)}
+% --------------------------------------------------------------
+
+\revquote{The simulations are carried out at only one vehicle speed, 15 m/s. However, existing vehicle dynamic studies indicate that different speeds may couple with road conditions to different extents. This issue should be discussed.}
+
+\noindent\textbf{Response.} We agree that speed dependence is an important consideration and have added explicit discussion of this limitation. The analytical framework already predicts how speed enters: from Equation~5, $E \propto v^{6-2D}$, indicating that (i)~energy increases with speed, and (ii)~the speed sensitivity itself depends on fractal dimension---smoother terrain (lower $D$) shows stronger speed dependence. This coupling means that absolute energy values apply strictly at 15~m/s, though the spectral scaling relationships ($\beta = 7-2D$) are speed-independent because they describe PSD shape rather than magnitude. We note that at substantially different speeds, relative terrain severity rankings could shift if fractal dimensions differ, and we identify multi-speed validation (5--30~m/s) as a priority for future work.
+
+No new simulations are required to address this comment because the analytical speed dependence is already derived in the framework (Equation~5). However, experimental multi-speed validation would strengthen the work and is now explicitly listed in Future Work.
+
+\revloc{Discussion, new paragraph ``Speed dependence''; Future Work, first sentence now explicitly identifies multi-speed simulation as a priority extension.}
+
+\bigskip
+
+% ==============================================================
+% Reviewer 1: Formatting and Presentation Issues
+% ==============================================================
+
+% [To be added next]
 
 % ==============================================================
 % \section*{Reviewer \#2}
