@@ -1,0 +1,30 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.pdf
+*.synctex.gz
+texput.log
+
+# Large data files (not for repo)
+tartan_drive/
+tartandrive_extracted/
+_tmp_bag/
+*.tar.gz
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Extracted text (generated)
+*.txt
+!cover_letter.txt

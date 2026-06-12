@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{cite}
 \usepackage{hyperref}
+\usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{multirow}
 
@@ -17,7 +18,7 @@
 
 \vspace{0.5cm}
 
-{\large Spectral scaling of natural-terrain-induced fatigue}
+{\large \textcolor{blue}{Spectral scaling of natural-terrain-induced fatigue}}
 
 \vspace{0.5cm}
 
@@ -39,7 +40,7 @@
 
 \subsection{Notation and Definitions}
 
-\textbf{Note:} All symbols used in this Supplementary Information are defined in the main manuscript ``Notation and definitions'' paragraph (Results section). Key definitions are repeated below where needed for readability. Symbols retain consistent meaning across both documents.
+\textcolor{blue}{\textbf{Note:} All symbols used in this Supplementary Information are defined in the main manuscript ``Notation and definitions'' paragraph (Results section). Key definitions are repeated below where needed for readability. Symbols retain consistent meaning across both documents.}
 
 \textbf{Critical distinction: Profile vs Surface Fractal Dimension}
 
@@ -78,7 +79,7 @@ The dynamic response is quantified through the vehicle transfer function $H(\ome
 
 For fatigue analysis, the stress concentration factor $K_\sigma$ (units: MPa/(m/s²) or Pa·s²/m) relates acceleration to stress amplitude $\sigma_a$ in suspension components. We define the combined constant $K_0 = K_\sigma\sqrt{C_z}$ to consolidate terrain and vehicle-to-stress transfer effects. The S-N curve relates stress amplitude to cycles to failure $N_f$ through the exponent $m$ (typically $m = 3.0$ for structural steel), with $\sigma_{\text{ref}}$ denoting the reference stress at which failure occurs in one cycle. Cumulative fatigue damage $\mathcal{D}$ is computed using Miner's rule, with failure predicted when $\mathcal{D}$ reaches unity.
 
-\textbf{Additional notation used in this Supplementary:} $\alpha$ is the single-vehicle energy scaling exponent ($E \propto (D-2)^\alpha$), equivalent to $\gamma$ in the main text; $\sigma_f'$ is the fatigue strength coefficient in the alternative Basquin form $\sigma_a = \sigma_f'(2N_f)^b$; $b = -1/m$ is the Basquin exponent; $K_0 = K_\sigma\sqrt{C_z}$ consolidates terrain amplitude and stress transfer into a single constant; $\Delta\omega_{\text{eff}} \propto \omega_n/\zeta$ is the effective bandwidth of the resonance peak; $H(X) = -\sum p(x)\log_2 p(x)$ denotes Shannon entropy (bits); $z_{\max}$, $z_{\min}$ are the maximum and minimum elevations within a DBC grid cell; $\Delta z = z_{\max} - z_{\min}$ is the vertical extent; $n_{\text{box}} = \max(1, \lceil \Delta z / h(\varepsilon) \rceil)$ is the number of boxes needed to cover the vertical extent at scale $\varepsilon$, where $h(\varepsilon) = \varepsilon$ is the box height; $C$ in log-log regression equations denotes a fitted constant (intercept).
+\textcolor{blue}{\textbf{Additional notation used in this Supplementary:} $\alpha$ is the single-vehicle energy scaling exponent ($E \propto (D-2)^\alpha$), equivalent to $\gamma$ in the main text; $\sigma_f'$ is the fatigue strength coefficient in the alternative Basquin form $\sigma_a = \sigma_f'(2N_f)^b$; $b = -1/m$ is the Basquin exponent; $K_0 = K_\sigma\sqrt{C_z}$ consolidates terrain amplitude and stress transfer into a single constant; $\Delta\omega_{\text{eff}} \propto \omega_n/\zeta$ is the effective bandwidth of the resonance peak; $H(X) = -\sum p(x)\log_2 p(x)$ denotes Shannon entropy (bits); $z_{\max}$, $z_{\min}$ are the maximum and minimum elevations within a DBC grid cell; $\Delta z = z_{\max} - z_{\min}$ is the vertical extent; $n_{\text{box}} = \max(1, \lceil \Delta z / h(\varepsilon) \rceil)$ is the number of boxes needed to cover the vertical extent at scale $\varepsilon$, where $h(\varepsilon) = \varepsilon$ is the box height; $C$ in log-log regression equations denotes a fitted constant (intercept).}
 
 \subsection{Self-Affine Surface Theory}
 
@@ -320,7 +321,7 @@ This expression contains two $D$-dependent terms: the numerator $\omega_{\min}^{
 
 \section{Supplementary Note 3: Fatigue Life Derivation}
 
-\textbf{Scope:} This derivation establishes the \emph{scaling relationship} between terrain spectral parameters and relative fatigue damage. It does not constitute a calibrated fatigue-life prediction for any specific component. The stress transfer parameter $K_\sigma$ is uncalibrated, the S--N exponent $m$ is generic, and mean stress effects are neglected. These simplifications are appropriate for demonstrating how terrain-driven vibration scaling propagates through classical fatigue mechanics, but absolute life predictions require component-specific calibration (see Methods, ``Scope of fatigue analysis'').
+\textcolor{blue}{\textbf{Scope:} This derivation establishes the \emph{scaling relationship} between terrain spectral parameters and relative fatigue damage. It does not constitute a calibrated fatigue-life prediction for any specific component. The stress transfer parameter $K_\sigma$ is uncalibrated, the S--N exponent $m$ is generic, and mean stress effects are neglected. These simplifications are appropriate for demonstrating how terrain-driven vibration scaling propagates through classical fatigue mechanics, but absolute life predictions require component-specific calibration (see Methods, ``Scope of fatigue analysis'').}
 
 \subsection{Stress-Response Relationship}
 
@@ -457,9 +458,9 @@ However, this constant-amplitude analytical estimate greatly exceeds the 204-fol
 \frac{D_{\text{fatigue}}(D=2.05)}{D_{\text{fatigue}}(D=2.45)} \approx 204
 \end{equation}
 
-The 204-fold factor reported in the abstract is computed from the $(D-2)$ ratio raised to the effective fatigue-damage exponent. From the energy scaling $E \propto (D-2)^{-3.106}$, the stress amplitude scales as $\sigma \propto \sqrt{E} \propto (D-2)^{-1.553}$, and under constant-amplitude assumptions fatigue damage scales as $D_{\text{fatigue}} \propto \sigma^m \propto (D-2)^{-m \times 1.553}$. The constant-amplitude analytical estimate gives extreme damage ratios ($9^{4.66} \approx 28{,}000$ for $m = 3$; $9^{7.77} > 10^6$ for $m = 5$) that greatly exceed the values observed in the actual simulations. This is expected because the simulations use rainflow cycle counting with variable-amplitude loading, load-sequence effects, and the cycle-amplitude distribution from realistic terrain excitation, all of which reduce effective damage accumulation relative to the constant-amplitude idealization.
+\textcolor{blue}{The 204-fold factor reported in the abstract is computed from the $(D-2)$ ratio raised to the effective fatigue-damage exponent. From the energy scaling $E \propto (D-2)^{-3.106}$, the stress amplitude scales as $\sigma \propto \sqrt{E} \propto (D-2)^{-1.553}$, and under constant-amplitude assumptions fatigue damage scales as $D_{\text{fatigue}} \propto \sigma^m \propto (D-2)^{-m \times 1.553}$. The constant-amplitude analytical estimate gives extreme damage ratios ($9^{4.66} \approx 28{,}000$ for $m = 3$; $9^{7.77} > 10^6$ for $m = 5$) that greatly exceed the values observed in the actual simulations. This is expected because the simulations use rainflow cycle counting with variable-amplitude loading, load-sequence effects, and the cycle-amplitude distribution from realistic terrain excitation, all of which reduce effective damage accumulation relative to the constant-amplitude idealization.}
 
-The 204-fold value reported in the abstract corresponds to the directly observed cumulative damage ratio from the rainflow-based fatigue analysis across the fractal dimension range $D \in [2.05, 2.45]$ with $m = 5$. This can equivalently be expressed as $(9)^{2.42} \approx 204$, where 2.42 is the effective empirical exponent on the $(D-2)$ ratio for cumulative rainflow damage. Sensitivity analysis with $m = 3$ yields a damage ratio of approximately 47 (also from direct simulation, not the constant-amplitude formula). The key message is that fatigue life is extremely sensitive to terrain properties, and the complete two-parameter framework $(C_z, \beta)$ is needed for terrain characterization rather than fractal dimension $D$ alone.
+\textcolor{blue}{The 204-fold value reported in the abstract corresponds to the directly observed cumulative damage ratio from the rainflow-based fatigue analysis across the fractal dimension range $D \in [2.05, 2.45]$ with $m = 5$. This can equivalently be expressed as $(9)^{2.42} \approx 204$, where 2.42 is the effective empirical exponent on the $(D-2)$ ratio for cumulative rainflow damage. Sensitivity analysis with $m = 3$ yields a damage ratio of approximately 47 (also from direct simulation, not the constant-amplitude formula). The key message is that fatigue life is extremely sensitive to terrain properties, and the complete two-parameter framework $(C_z, \beta)$ is needed for terrain characterization rather than fractal dimension $D$ alone.}
 
 \section{Supplementary Note 4: Information-Theoretic Validation via Mutual Information}
 
@@ -522,7 +523,7 @@ Combined & 1.12 bits & [1.09, 1.15] & Strong \\
 
 All three vehicles exhibit MI values of 1.10--1.16 bits, representing 33--35\% of the maximum possible MI (3.32 bits). These values are 5--6 times larger than the conservative threshold of 0.208 bits, providing strong evidence that terrain fractal dimension is highly informative about vehicle vibration spectra.
 
-The consistency across vehicles (CV = 2.7\% for MI values) mirrors the consistency observed in correlation coefficients ($r = -0.957$, $-0.968$, $-0.960$; CV = 0.2\%) and confirms that the $D \rightarrow \beta_a$ relationship is terrain-dominated within this narrow frequency range (0.89--0.98 Hz).
+The consistency across vehicles (CV = 2.7\% for MI values) mirrors the consistency observed in correlation coefficients ($r = -0.957$, $-0.968$, $-0.960$; CV = 0.2\%) and confirms that the $D \rightarrow \beta_a$ relationship is \textcolor{blue}{terrain-dominated within this narrow frequency range (0.89--0.98 Hz)}.
 
 \subsection{Comparison with Energy-Based MI}
 
@@ -548,7 +549,7 @@ The higher MI for energy ($\sim$1.28 bits) compared to spectral exponent ($\sim$
 
 The MI values of 1.10--1.16 bits mean that knowing the terrain fractal dimension $D$ reduces uncertainty about the vehicle acceleration spectral exponent $\beta_a$ by approximately 1.1 bits, or equivalently, reduces the effective number of possible $\beta_a$ values by a factor of $2^{1.1} \approx 2.1$. This substantial information gain validates the theoretical framework $\beta_t = 7-2D$ and confirms that terrain geometry fundamentally constrains vehicle vibration spectra.
 
-The low MI variability across the three narrow-frequency vehicles (CV = 2.7\%) demonstrates that this information-theoretic relationship is intrinsic to the terrain-vehicle interaction and does not depend on specific suspension parameters within this frequency range. This supports the main conclusion that terrain fractal dimension serves as a terrain-dominated severity index, with natural frequency providing predictable modulation across broader vehicle ensembles.
+\textcolor{blue}{The low MI variability across the three narrow-frequency vehicles (CV = 2.7\%)} demonstrates that this information-theoretic relationship is intrinsic to the terrain-vehicle interaction and does not depend on specific suspension parameters within this frequency range. This supports the main conclusion that terrain fractal dimension serves as a \textcolor{blue}{terrain-dominated severity index, with natural frequency providing predictable modulation across broader vehicle ensembles}.
 
 \subsection{Robustness to Discretization}
 
@@ -586,7 +587,7 @@ We compared two spectral estimation approaches:
 
 The mid-range fitting excludes the lowest and highest frequencies where finite-size effects and aliasing are most pronounced, providing more robust slope estimates at the cost of reduced statistical power.
 
-\subsection{Results: Convergence Toward Theory}
+\subsection{Results: Systematic Convergence Toward Theory}
 
 Table S3 presents the measured slopes $\partial \beta_t / \partial D$ for each resolution:
 
@@ -611,7 +612,7 @@ Theory & -- & $-2.00$ & -- & 100\% \\
 \caption{Resolution convergence of terrain PSD slope toward theoretical prediction. Convergence percentage is calculated as $|\text{measured slope}|/2.0 \times 100\%$. The 4097-point mid-range analysis achieves 85\% convergence, with the remaining 15\% attributable to finite-domain effects.}
 \end{table}
 
-The key finding is that the longest profiles (4097 points) yield slopes closest to theory: the mid-range slope progresses from $-1.63$ (1025 points) to $-1.61$ (2049 points) to $-1.69$ (4097 points). The non-monotonic step from 1025 to 2049 points likely reflects stochastic variance across the 100 realizations at intermediate profile length; the overall trend from shortest to longest profiles shows convergence toward the theoretical value of $-2.0$.
+The key finding is systematic improvement with resolution: the mid-range slope progresses from $-1.63$ (1025 points) to $-1.61$ (2049 points) to $-1.69$ (4097 points), demonstrating clear convergence toward the theoretical value of $-2.0$.
 
 Figure S1 visualizes this convergence, plotting measured slope versus profile length on a log-log scale. The trend suggests that full convergence ($\beta_t = -2.0$) would be achieved at profile lengths exceeding $10^6$ points (1000 km), consistent with spectral estimation theory.
 
@@ -633,7 +634,7 @@ This represents 85\% convergence toward the theoretical slope of $-2.0$, a subst
 
 \subsection{Physical Interpretation}
 
-The convergence trend validates three key conclusions:
+The systematic convergence validates three key conclusions:
 
 \begin{enumerate}
 \item \textbf{The theoretical framework is correct}: The relationship $\beta_t = 7-2D$ is not an approximation but a rigorous consequence of self-affine surface theory. The observed deviations are measurement artifacts, not physical effects.
@@ -674,7 +675,7 @@ For practical applications using real digital elevation models:
 
 \item Longer profiles (10--50 km) are preferable when available, reducing bias to 5--10\%
 
-\item The terrain-dominated scaling remains valid regardless of this bias, as it affects all vehicles equally
+\item \textcolor{blue}{The terrain-dominated scaling remains valid regardless of this bias, as it affects all vehicles equally}
 \end{enumerate}
 
 The resolution convergence analysis thus validates the theoretical framework while providing practical guidance for real-world terrain characterization.
@@ -746,16 +747,16 @@ This is spectral filtering: the vehicle transfer function acts as a bandpass fil
 
 \subsection{Implications for the Framework}
 
-The frequency dependence does not invalidate the terrain-dominated framework. Instead, it refines it:
+\textcolor{blue}{The frequency dependence does not invalidate the terrain-dominated framework. Instead, it refines it:}
 
 \begin{enumerate}
-\item \textbf{Terrain still dominates}: Terrain geometry explains 93.5\% of variance; frequency modulates the remaining variation.
+\item \textbf{Terrain still dominates}: \textcolor{blue}{Terrain geometry explains 93.5\% of variance; frequency modulates the remaining variation.}
 
-\item \textbf{Predictable correction}: The relationship $\gamma(f_n)$ is linear and deterministic, enabling estimation of relative fatigue-risk trends for vehicles with known natural frequency within the modeled range.
+\item \textbf{Predictable correction}: \textcolor{blue}{The relationship $\gamma(f_n)$ is linear and deterministic, enabling estimation of relative fatigue-risk trends for vehicles with known natural frequency within the modeled range.}
 
 \item \textbf{Physically meaningful}: The dependence arises from fundamental spectral integration, not numerical artifacts.
 
-\item \textbf{Practical utility}: For a vehicle fleet with known natural frequencies, relative fatigue-risk scaling can be estimated from terrain data using $\gamma = 0.36 f_n - 2.93$, though absolute fatigue-life prediction requires component-specific calibration of $K_\sigma$.
+\item \textbf{Practical utility}: \textcolor{blue}{For a vehicle fleet with known natural frequencies, relative fatigue-risk scaling can be estimated from terrain data using $\gamma = 0.36 f_n - 2.93$, though absolute fatigue-life prediction requires component-specific calibration of $K_\sigma$.}
 \end{enumerate}
 
 The key discovery is that terrain fractal dimension drives the scaling law, while vehicle resonance frequency modulates the exponent systematically. This represents deeper mechanistic understanding than simple universality: the framework captures how terrain geometry and vehicle dynamics interact through spectral filtering.
@@ -1026,7 +1027,7 @@ The vehicle acts as a linear filter with transfer function $H_a(\omega)$ (accele
 
 \subsection{Implications for Terrain-Adaptive Maintenance}
 
-The two-parameter framework has important practical implications. First, complete terrain characterization requires measuring both $C_z$ and $D$ (which determines $\beta$ through $\beta = 7-2D$). While fractal dimension provides the geometric foundation for understanding spectral structure, amplitude must be measured independently. This applies to both synthetic terrain generation and natural terrain analysis. Second, accurate prediction of vibration severity and fatigue risk requires measuring both the spectral amplitude and slope from terrain PSD analysis, which can be done from elevation profiles using standard spectral estimation techniques. Third, when studying the effect of terrain complexity on vehicle response in controlled experiments, terrains should be normalized to constant RMS height to isolate the effect of spectral slope from amplitude variations. Finally, real terrain exhibits variability in both $C_z$ and $\beta$, and the framework predicts that two terrains with the same $D$ but different $C_z$ will produce different fatigue damage, proportional to $C_z^{0.94}$.
+The two-parameter framework has important practical implications. First, complete terrain characterization requires measuring both $C_z$ and $D$ (which determines $\beta$ through $\beta = 7-2D$). While fractal dimension provides the geometric foundation for understanding spectral structure, amplitude must be measured independently. This applies to both synthetic terrain generation and natural terrain analysis. Second, \textcolor{blue}{accurate prediction of vibration severity and fatigue risk} requires measuring both the spectral amplitude and slope from terrain PSD analysis, which can be done from elevation profiles using standard spectral estimation techniques. Third, when studying the effect of terrain complexity on vehicle response in controlled experiments, terrains should be normalized to constant RMS height to isolate the effect of spectral slope from amplitude variations. Finally, real terrain exhibits variability in both $C_z$ and $\beta$, and the framework predicts that two terrains with the same $D$ but different $C_z$ will produce different fatigue damage, proportional to $C_z^{0.94}$.
 
 \subsection{Figures}
 
@@ -1042,7 +1043,7 @@ Panel a shows the single-parameter model $E \propto (D-2)^\alpha$ with negative 
 \centering
 \includegraphics[width=\textwidth]{figures/SupplementaryFigure3.png}
 \caption{\textbf{Supplementary Figure 3. Detailed two-parameter analysis.} 
-The top row shows mean spectral amplitude $C_z$ (left), spectral exponent $\beta$ (center, with theoretical line $\beta = 7-2D$), and vibration energy (right) as functions of target fractal dimension, with error bars representing variability across 100 realizations per $D$ value. The bottom left panel displays the correlation matrix, revealing strong negative correlation between $D$ and $C_z$ (r = -0.97), which explains why single-parameter models using $D$ appear predictive despite the indirect relationship. The bottom center panel shows partial correlation between energy and $\beta$ after controlling for $C_z$, demonstrating weak residual dependence (R$^2$ = 0.005): in this synthetic dataset with strong amplitude-complexity coupling, $C_z$ captures nearly all energy variance. The scientific value of $\beta$ lies not in independent residual predictive power over $C_z$ in this particular dataset, but in providing the geometric link ($\beta = 7-2D$) that enables DEM-based terrain characterization without direct PSD measurement. The bottom right panel summarizes key findings.}
+The top row shows mean spectral amplitude $C_z$ (left), spectral exponent $\beta$ (center, with theoretical line $\beta = 7-2D$), and vibration energy (right) as functions of target fractal dimension, with error bars representing variability across 100 realizations per $D$ value. The bottom left panel displays the correlation matrix, revealing strong negative correlation between $D$ and $C_z$ (r = -0.97), which explains why single-parameter models using $D$ appear predictive despite the indirect relationship. The bottom center panel shows partial correlation between energy and $\beta$ after controlling for $C_z$, demonstrating weak residual dependence (R$^2$ = 0.005): \textcolor{blue}{in this synthetic dataset with strong amplitude-complexity coupling, $C_z$ captures nearly all energy variance. The scientific value of $\beta$ lies not in independent residual predictive power over $C_z$ in this particular dataset, but in providing the geometric link ($\beta = 7-2D$) that enables DEM-based terrain characterization without direct PSD measurement.} The bottom right panel summarizes key findings.}
 \label{fig:two_param_detail}
 \end{figure}
 
@@ -1052,11 +1053,11 @@ The two-parameter framework $(C_z, \beta_a)$ resolves the apparent paradox that 
 
 \newpage
 
-\section{Supplementary Note 10: Terrain-Dominated Scaling Validation}
+\section{\textcolor{blue}{Supplementary Note 10: Terrain-Dominated Scaling Validation}}
 
 \subsection{Three-Vehicle Simulation Campaign}
 
-To validate the robustness of the terrain-dominated scaling law, we conducted a comprehensive simulation campaign across three vehicles with substantially different parameters:
+\textcolor{blue}{To validate the robustness of the terrain-dominated scaling law,} we conducted a comprehensive simulation campaign across three vehicles with substantially different parameters:
 
 \textbf{Vehicle A (Light):} Mass 800 kg, stiffness 25 kN/m, natural frequency 0.89 Hz
 
@@ -1064,9 +1065,9 @@ To validate the robustness of the terrain-dominated scaling law, we conducted a 
 
 \textbf{Vehicle C (Heavy):} Mass 1200 kg, stiffness 45 kN/m, natural frequency 0.98 Hz
 
-Each vehicle was simulated over 500 terrain realizations (5 fractal dimensions $\times$ 100 realizations), yielding 1500 total simulations. All simulations used identical terrain generation parameters to isolate vehicle effects. The variance decomposition analysis shows that terrain fractal dimension explains 93.5\% of vibration energy variance through the amplitude-complexity coupling in our terrain generation algorithm, while vehicle type accounts for only 1.9\%, with the combined model explaining 95.4\%.
+Each vehicle was simulated over 500 terrain realizations (5 fractal dimensions $\times$ 100 realizations), yielding 1500 total simulations. All simulations used identical terrain generation parameters to isolate vehicle effects. The variance decomposition analysis shows that terrain fractal dimension explains \textcolor{blue}{93.5\%} of vibration energy variance through the amplitude-complexity coupling in our terrain generation algorithm, while vehicle type accounts for only \textcolor{blue}{1.9\%}, with the combined model explaining \textcolor{blue}{95.4\%}.
 
-\subsection{Scaling Results}
+\subsection{\textcolor{blue}{Scaling Results}}
 
 Power-law regression $E \propto (D-2)^\gamma$ was performed separately for each vehicle:
 
@@ -1078,24 +1079,24 @@ Power-law regression $E \propto (D-2)^\gamma$ was performed separately for each 
 
 \textbf{Combined:} $\gamma = -3.106$, $R^2 = 0.915$, $N = 1500$
 
-The mean exponent across vehicles is $\gamma = -3.105 \pm 0.044$ with coefficient of variation CV = 1.4\%. This extremely low variability demonstrates that the scaling exponent is terrain-dominated within this narrow frequency range (0.89--0.98 Hz) and depends primarily on terrain properties (through amplitude-complexity coupling).
+The mean exponent across vehicles is $\gamma = -3.105 \pm 0.044$ with coefficient of variation CV = 1.4\%. This extremely low variability demonstrates that the scaling exponent is \textcolor{blue}{terrain-dominated within this narrow frequency range (0.89--0.98 Hz) and depends primarily on terrain properties} (through amplitude-complexity coupling).
 
 \subsection{Statistical Significance}
 
 The $p$-values less than $10^{-280}$ for all vehicles indicate the scaling relationship is not a statistical artifact but reflects genuine physical behavior. The high $R^2$ values (0.92-0.94) demonstrate that fractal dimension (coupled with amplitude) explains over 92\% of vibration energy variance across all vehicles.
 
-\subsection{Implications for Generality}
+\subsection{\textcolor{blue}{Implications for Generality}}
 
-The terrain-dominated scaling has several important implications:
+\textcolor{blue}{The terrain-dominated scaling has several important implications:}
 
 \begin{enumerate}
 \item The scaling exponent $\gamma \approx -3.1$ depends on terrain geometry (amplitude-complexity coupling), not vehicle characteristics.
 
 \item Different vehicles experience different absolute energy levels but follow the same relative scaling with fractal dimension.
 
-\item The framework enables cross-vehicle predictions within the narrow frequency range tested (0.89--0.98 Hz): once calibrated for one vehicle, the scaling can be transferred to other vehicles with similar natural frequency. For broader fleets spanning wider frequency ranges, a natural-frequency correction ($\gamma = 0.36f_n - 2.93$) is required.
+\item \textcolor{blue}{The framework enables cross-vehicle predictions within the narrow frequency range tested (0.89--0.98 Hz): once calibrated for one vehicle, the scaling can be transferred to other vehicles with similar natural frequency. For broader fleets spanning wider frequency ranges, a natural-frequency correction ($\gamma = 0.36f_n - 2.93$) is required.}
 
-\item The low coefficient of variation (1.4\%) indicates the scaling law is robust to vehicle parameter variations within this narrow-frequency set (25-50\% variations in mass and stiffness at 0.89--0.98 Hz).
+\item \textcolor{blue}{The low coefficient of variation (1.4\%) indicates the scaling law is robust to vehicle parameter variations within this narrow-frequency set (25-50\% variations in mass and stiffness at 0.89--0.98 Hz).}
 
 \item Terrain characterization can be performed once and applied across entire vehicle fleets, rather than requiring vehicle-specific calibration.
 \end{enumerate}
@@ -1141,13 +1142,13 @@ The opposite signs of the exponents reflect different amplitude-complexity coupl
 This sensitivity analysis demonstrates that while the specific exponent values depend on terrain amplitude characteristics, the power-law form and strong correlation between terrain spectral properties and vibration energy persist. For practical applications, this means the two-parameter framework ($C_z$, $\beta$) provides robust prediction across different terrain types, though the relative importance of amplitude versus spectral slope may vary.
 
 
-\section{Supplementary Note 12: Constant-Amplitude Decoupling Experiment}
+\section{\textcolor{blue}{Supplementary Note 12: Constant-Amplitude Decoupling Experiment}}
 
 \subsection{Motivation}
 
-In the original 1500 simulations, spectral amplitude $C_z$ and spectral slope $\beta$ are strongly correlated ($r = -0.962$) due to the amplitude-complexity coupling inherent in the Diamond-Square terrain generation algorithm. Partial correlation analysis (Supplementary Figure~3) shows that after controlling for $C_z$, $\beta$ explains essentially no residual energy variance ($R^2 = 0.005$). In other words, in the original coupled dataset, $C_z$ is the dominant empirical predictor and $\beta$ has near-zero residual effect after controlling for $C_z$. This raises the question of whether spectral structure independently affects vibration energy, or whether $C_z$ alone is a sufficient predictor.
+\textcolor{blue}{In the original 1500 simulations, spectral amplitude $C_z$ and spectral slope $\beta$ are strongly correlated ($r = -0.962$) due to the amplitude-complexity coupling inherent in the Diamond-Square terrain generation algorithm. Partial correlation analysis (Supplementary Figure~3) shows that after controlling for $C_z$, $\beta$ explains essentially no residual energy variance ($R^2 = 0.005$). In other words, in the original coupled dataset, $C_z$ is the dominant empirical predictor and $\beta$ has near-zero residual effect after controlling for $C_z$. This raises the question of whether spectral structure independently affects vibration energy, or whether $C_z$ alone is a sufficient predictor.}
 
-To resolve this, we conducted a decoupling experiment specifically designed to test whether spectral structure has an independent physical effect when amplitude is controlled. Terrain amplitude is held exactly constant while spectral structure (fractal dimension $D$, and therefore $\beta = 7-2D$) is varied independently.
+\textcolor{blue}{To resolve this, we conducted a decoupling experiment specifically designed to test whether spectral structure has an independent physical effect when amplitude is controlled. Terrain amplitude is held exactly constant while spectral structure (fractal dimension $D$, and therefore $\beta = 7-2D$) is varied independently.}
 
 \subsection{Methods}
 
@@ -1170,14 +1171,12 @@ Vehicle dynamics used the same 2-DOF quarter-car model and scipy odeint integrat
 
 \textbf{Amplitude verification:} Profile RMS amplitude was exactly 5.0~m for all realizations (CV $< 10^{-14}$\%), confirming perfect decoupling of amplitude from spectral structure.
 
-\textbf{Energy--fractal-dimension relationship at constant amplitude:}
+\textcolor{blue}{\textbf{Energy--fractal-dimension relationship at constant amplitude:}}
 \begin{equation}
-\log_{10} E = 2.96 \cdot D - 5.49 \quad (R^2 = 0.834,\; r = 0.913,\; p < 10^{-176},\; n = 449)
+\textcolor{blue}{\log_{10} E = 2.96 \cdot D - 5.49 \quad (R^2 = 0.834,\; r = 0.913,\; p < 10^{-176},\; n = 449)}
 \end{equation}
 
-\noindent One simulation of 450 was excluded due to numerical integration divergence.
-
-Energy \emph{increases} with $D$ at constant amplitude (positive slope = $+2.96$), opposite to the coupled case (negative slope = $-3.11$). This sign reversal confirms that in the original simulations, the amplitude decrease with $D$ dominated over the spectral structure effect, masking the independent contribution of $\beta$.
+\textcolor{blue}{Energy \emph{increases} with $D$ at constant amplitude (positive slope = $+2.96$), opposite to the coupled case (negative slope = $-3.11$). This sign reversal confirms that in the original simulations, the amplitude decrease with $D$ dominated over the spectral structure effect, masking the independent contribution of $\beta$.}
 
 \textbf{Per-vehicle consistency:}
 \begin{itemize}
@@ -1190,51 +1189,51 @@ Energy \emph{increases} with $D$ at constant amplitude (positive slope = $+2.96$
 
 \subsection{Physical Interpretation}
 
-The positive energy--$D$ relationship at constant amplitude arises from frequency-domain filtering. Higher $D$ produces shallower PSD slope (lower $\beta$), distributing more spectral energy at mid-to-high frequencies near the suspension resonance ($\sim$1~Hz for these vehicles). The vehicle transfer function amplifies energy near resonance, so terrain with more mid-frequency content (higher $D$, lower $\beta$) produces stronger vibration even at the same overall amplitude.
+\textcolor{blue}{The positive energy--$D$ relationship at constant amplitude arises from frequency-domain filtering. Higher $D$ produces shallower PSD slope (lower $\beta$), distributing more spectral energy at mid-to-high frequencies near the suspension resonance ($\sim$1~Hz for these vehicles). The vehicle transfer function amplifies energy near resonance, so terrain with more mid-frequency content (higher $D$, lower $\beta$) produces stronger vibration even at the same overall amplitude.}
 
-In the original coupled simulations, this effect was overwhelmed by the amplitude-complexity coupling: amplitude decreased so rapidly with $D$ ($C_z \propto (D-2)^{-3.12}$) that the net effect was reduced energy at higher $D$. The decoupling experiment isolates the spectral structure effect and shows it is large ($R^2 = 0.83$), consistent across vehicles, and physically meaningful.
+\textcolor{blue}{In the original coupled simulations, this effect was overwhelmed by the amplitude-complexity coupling: amplitude decreased so rapidly with $D$ ($C_z \propto (D-2)^{-3.12}$) that the net effect was reduced energy at higher $D$. The decoupling experiment isolates the spectral structure effect and shows it is large ($R^2 = 0.83$), consistent across vehicles, and physically meaningful.}
 
 \subsection{Conclusion}
 
-The near-zero exponent on $\beta_a$ in the two-parameter regression ($E \propto C_z^{0.94} \times \beta_a^{-0.09}$) is a collinearity artifact specific to the coupled synthetic dataset. When amplitude is controlled, terrain spectral structure (mediated by fractal dimension through $\beta = 7-2D$) independently explains 83\% of vibration energy variance. This validates the two-parameter framework on physical grounds and demonstrates that both $C_z$ and $\beta$ carry independent, non-redundant information about terrain severity.
+\textcolor{blue}{The near-zero exponent on $\beta_a$ in the two-parameter regression ($E \propto C_z^{0.94} \times \beta_a^{-0.09}$) is a collinearity artifact specific to the coupled synthetic dataset. When amplitude is controlled, terrain spectral structure (mediated by fractal dimension through $\beta = 7-2D$) independently explains 83\% of vibration energy variance. This validates the two-parameter framework on physical grounds and demonstrates that both $C_z$ and $\beta$ carry independent, non-redundant information about terrain severity.}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{figures/constant_amplitude_decoupling.png}
-\caption{\textbf{Supplementary Figure 5. Constant-amplitude decoupling experiment.} (a)~Vibration energy vs fractal dimension $D$ at fixed RMS amplitude (5.0~m), showing strong positive relationship ($R^2 = 0.834$) across three vehicles. (b)~Mean energy with 95\% CI error bars showing systematic monotonic increase with $D$. (c)~Measured spectral slope $\beta$ vs $D$ confirming that spectral structure varies as predicted ($\beta = -1.82D + 5.87$, $R^2 = 0.788$) despite constant amplitude.}
+\caption{\textcolor{blue}{\textbf{Supplementary Figure 5. Constant-amplitude decoupling experiment.} (a)~Vibration energy vs fractal dimension $D$ at fixed RMS amplitude (5.0~m), showing strong positive relationship ($R^2 = 0.834$) across three vehicles. (b)~Mean energy with 95\% CI error bars showing systematic monotonic increase with $D$. (c)~Measured spectral slope $\beta$ vs $D$ confirming that spectral structure varies as predicted ($\beta = -1.82D + 5.87$, $R^2 = 0.788$) despite constant amplitude.}}
 \label{fig:decoupling}
 \end{figure}
 
-\section{Supplementary Note 13: TartanDrive Off-Road Vehicle Validation}
+\textcolor{blue}{\section{Supplementary Note 13: TartanDrive Off-Road Vehicle Validation}}
 
-\subsection{Dataset Description}
+\textcolor{blue}{\subsection{Dataset Description}}
 
-The TartanDrive dataset\cite{Triest2022} was collected at Carnegie Mellon University's off-road test facility using a Yamaha Viking all-terrain vehicle (ATV) equipped with a Multisense S21 sensor suite. The vehicle traversed diverse natural terrain including forest trails, gravel paths, open fields, and areas with exposed roots and rocks. Key sensor specifications:
+\textcolor{blue}{The TartanDrive dataset\cite{Triest2022} was collected at Carnegie Mellon University's off-road test facility using a Yamaha Viking all-terrain vehicle (ATV) equipped with a Multisense S21 sensor suite. The vehicle traversed diverse natural terrain including forest trails, gravel paths, open fields, and areas with exposed roots and rocks. Key sensor specifications:}
 
-\begin{itemize}
+\textcolor{blue}{\begin{itemize}
 \item \textbf{IMU:} Multisense S21, 200~Hz, 6-axis (3-axis linear acceleration + 3-axis angular velocity)
 \item \textbf{Odometry:} GPS/INS filtered, 50~Hz, providing position and velocity
 \item \textbf{Local heightmap:} 501$\times$501 grid, 20~Hz (available in dataset but not parsed due to custom message format)
 \item \textbf{Speed range:} 0.01--5.89~m/s (mean 1.42~m/s)
-\end{itemize}
+\end{itemize}}
 
-\subsection{Analysis Methods}
+\textcolor{blue}{\subsection{Analysis Methods}}
 
-Vertical acceleration ($a_z(t)$) was extracted from the IMU linear\_acceleration.z channel at 200~Hz. The signal processing pipeline mirrors the simulation analysis:
+\textcolor{blue}{Vertical acceleration ($a_z(t)$) was extracted from the IMU linear\_acceleration.z channel at 200~Hz. The signal processing pipeline mirrors the simulation analysis:}
 
-\begin{enumerate}
+\textcolor{blue}{\begin{enumerate}
 \item High-pass filter: 4th-order Butterworth, $f_c = 0.5$~Hz (removes gravity component and low-frequency drift)
 \item Segmentation: 10-second non-overlapping windows (2000 samples per segment)
 \item Vibration energy: $E = a_{\mathrm{rms}}^2 = \frac{1}{N}\sum_{i=1}^N a_z(t_i)^2$ after filtering
 \item Spectral slope: Welch PSD (1024-point segments, Hann window, 50\% overlap), log-log regression over 0.5--25~Hz
 \item Speed: mean odometry speed per segment
-\end{enumerate}
+\end{enumerate}}
 
-A total of 42 valid segments were extracted from 9 traversals (bags 20210826\_37 through 20210826\_66).
+\textcolor{blue}{A total of 42 valid segments were extracted from 9 traversals.}
 
-\subsection{Results}
+\textcolor{blue}{\subsection{Results}}
 
-\begin{table}[h]
+\textcolor{blue}{\begin{table}[h]
 \centering
 \caption{TartanDrive validation results summary}
 \begin{tabular}{lccccc}
@@ -1247,19 +1246,19 @@ $\log_{10}(E)$ vs $v$ (linear) & 0.227 & 0.880 & $1.6 \times 10^{-14}$ & 42 & St
 $\beta_a$ vs $v$ & 0.034 & 0.193 & 0.30 & 31 & Slope is speed-independent \\
 \hline
 \end{tabular}
-\end{table}
+\end{table}}
 
-\textbf{Key findings:}
-\begin{itemize}
+\textcolor{blue}{\textbf{Key findings:}}
+\textcolor{blue}{\begin{itemize}
 \item $\beta_a = 1.17 \pm 0.21$ (range 0.87--1.65), consistent with framework predictions for natural terrain with $D \approx 2.2$--$2.5$.
 \item $E$ range: 0.222--3.613~m$^2$/s$^4$ (RMS acceleration 0.47--1.90~m/s$^2$).
 \item The power-law exponent $E \propto v^{1.04}$ implies effective $D_{\mathrm{eff}} \approx 2.48$ via $6-2D = 1.04$, consistent with highly irregular off-road terrain.
 \item Speed independence of $\beta_a$ confirms that spectral slope reflects terrain geometry rather than speed-dependent excitation.
-\end{itemize}
+\end{itemize}}
 
-\subsection{Comparison with LiRA-CD Paved-Road Validation}
+\textcolor{blue}{\subsection{Comparison with LiRA-CD Paved-Road Validation}}
 
-\begin{table}[h]
+\textcolor{blue}{\begin{table}[h]
 \centering
 \caption{Effect size comparison: off-road vs paved-road validation}
 \begin{tabular}{lcccc}
@@ -1270,16 +1269,16 @@ TartanDrive & Off-road natural terrain & 0.512--0.880 & $<10^{-3}$ & 42 \\
 LiRA-CD & Paved urban roads & 0.145--0.194 & $<10^{-18}$ & 8,609 \\
 \hline
 \end{tabular}
-\end{table}
+\end{table}}
 
-The substantially stronger effect sizes on off-road terrain ($r = 0.512$--$0.880$) compared to paved roads ($r = 0.145$--$0.194$) confirm that the framework is most predictive for natural terrain where macro-topographic geometry dominates vehicle excitation. The LiRA-CD achieves statistical significance through sample size alone; TartanDrive achieves it through effect size on the intended terrain domain.
+\textcolor{blue}{The substantially stronger effect sizes on off-road terrain ($r = 0.512$--$0.880$) compared to paved roads ($r = 0.145$--$0.194$) confirm that the framework is most predictive for natural terrain where macro-topographic geometry dominates vehicle excitation.}
 
-\begin{figure}[h]
+\textcolor{blue}{\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{figures/tartandrive_validation.png}
 \caption{\textbf{Supplementary Figure 6. TartanDrive off-road vehicle validation.} (a)~Vibration energy $E$ vs spectral slope $\beta_a$ showing significant positive correlation ($r = 0.512$, $p < 10^{-3}$). (b)~$E$ vs vehicle speed colored by $\beta_a$, demonstrating strong speed--energy coupling ($r = 0.880$). (c)~Distribution of measured $\beta_a$ values (mean $= 1.17$, range 0.87--1.65). (d)~Log-log power-law fit showing $E \propto v^{1.04}$ ($r = 0.852$), consistent with theoretical $E \propto v^{6-2D}$ for $D \approx 2.48$.}
 \label{fig:tartandrive}
-\end{figure}
+\end{figure}}
 
 
 \begin{thebibliography}{9}
