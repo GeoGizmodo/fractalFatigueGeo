@@ -1205,13 +1205,15 @@ The near-zero exponent on $\beta_a$ in the two-parameter regression ($E \propto 
 \label{fig:decoupling}
 \end{figure}
 
+\noindent\textbf{Interpretation.} This experiment replaces, rather than reinforces, the artifact-driven $D$-only interpretation: the defensible result is not that $D$ alone predicts fatigue, but that $\beta$, derived from $D$ via $\beta = 7-2D$, carries independent spectral information when $C_z$ is controlled or measured. The constant-amplitude decoupling is the primary empirical evidence that the two-parameter framework $(C_z, \beta)$ is physically justified rather than statistically redundant.
+
 \section{Supplementary Note 13: TartanDrive Off-Road Vehicle Validation}
 
 \subsection{Motivation and Complementarity with LiRA-CD}
 
 Reviewer \#2 (Major Comment 4) and Reviewer \#3 (Major Issue 2) both identified insufficient real-data validation as the most substantive limitation of the manuscript. The LiRA-CD analysis provides a large-sample confirmation of the $\beta_a \rightarrow E$ link ($n = 8{,}609$, $p < 10^{-40}$) but with inherent limitations: (a)~it uses consumer electric vehicles (Renault Zo\"{e}) on maintained paved urban roads, a domain where the framework is explicitly predicted to underperform; (b)~the 50~Hz sampling rate limits spectral analysis to 25~Hz; (c)~no simultaneous terrain geometry measurement is available; and (d)~the modest effect sizes ($r \approx 0.15$--$0.19$) reflect the mismatch between the measurement domain (paved roads) and the framework's intended domain (natural terrain).
 
-The TartanDrive dataset addresses all four limitations:
+The TartanDrive dataset partially addresses these limitations:
 \begin{itemize}
 \item \textbf{Domain match:} Real off-road natural terrain (forests, gravel, open fields)---precisely the environment where the framework is designed to apply.
 \item \textbf{Sensor quality:} 200~Hz IMU provides spectral resolution to 100~Hz, covering the full structural fatigue bandwidth (0.5--50~Hz).
@@ -1219,7 +1221,7 @@ The TartanDrive dataset addresses all four limitations:
 \item \textbf{Simultaneous terrain data:} Local heightmaps (501$\times$501, 20~Hz) are collected simultaneously with IMU---enabling future end-to-end $D \rightarrow \beta_t \rightarrow \beta_a \rightarrow E$ validation once the custom GridMap message format is parsed. The current analysis validates the $\beta_a \rightarrow E$ and $E \rightarrow v$ links using IMU and odometry.
 \end{itemize}
 
-Together, LiRA-CD and TartanDrive provide complementary evidence: LiRA-CD demonstrates statistical significance through sample size on the ``wrong'' domain (paved roads), while TartanDrive demonstrates large effect sizes on the ``right'' domain (off-road natural terrain). The combination is substantially more convincing than either alone.
+Together, LiRA-CD and TartanDrive provide complementary evidence: LiRA-CD demonstrates statistical significance through sample size on paved roads, while TartanDrive demonstrates large effect sizes on the intended off-road terrain domain. The combination provides complementary evidence at adjacent links in the chain, while still falling short of a single end-to-end validation dataset with all links measured simultaneously.
 
 \subsection{Dataset Description}
 
@@ -1268,7 +1270,7 @@ $\beta_a$ vs $v$ & 0.034 & 0.193 & 0.30 & 31 & Slope is speed-independent \\
 \item $\beta_a = 1.17 \pm 0.21$ (range 0.87--1.65), consistent with framework predictions for natural terrain with $D \approx 2.2$--$2.5$.
 \item $E$ range: 0.222--3.613~m$^2$/s$^4$ (RMS acceleration 0.47--1.90~m/s$^2$).
 \item The power-law exponent $E \propto v^{1.04}$ implies effective $D_{\mathrm{eff}} \approx 2.48$ via $6-2D = 1.04$, consistent with highly irregular off-road terrain.
-\item Speed independence of $\beta_a$ confirms that spectral slope reflects terrain geometry rather than speed-dependent excitation.
+\item $\beta_a$ is speed-independent, consistent with the interpretation that spectral slope reflects terrain-related excitation rather than speed alone.
 \end{itemize}
 
 \subsection{Comparison with LiRA-CD Paved-Road Validation}
