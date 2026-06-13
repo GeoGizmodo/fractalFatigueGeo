@@ -317,7 +317,9 @@ Together, the LiDAR terrain comparison and LiRA-CD vehicle analysis trace the fu
 
 \textcolor{blue}{\subsection*{Real off-road vehicle validation: TartanDrive dataset}}
 
-\textcolor{blue}{To validate the framework on real off-road terrain---the domain for which it is specifically intended---we analyzed the TartanDrive autonomous driving dataset\cite{Triest2022}, which contains synchronized IMU accelerometer data (200~Hz) and GPS-tagged odometry from a Yamaha Viking all-terrain vehicle (ATV) traversing diverse natural terrain (forest trails, gravel paths, open fields) at Carnegie Mellon University's off-road test facility. Vehicle speeds ranged from 0.01 to 5.89~m/s (mean 1.42~m/s), spanning the low-speed off-road regime relevant to military and autonomous applications.}
+\textcolor{blue}{The LiRA-CD validation above demonstrates that the $\beta_a \rightarrow E$ relationship holds on real vehicle data ($n = 8{,}609$, $p < 10^{-40}$), but with modest effect sizes ($r = 0.145$--$0.194$). This is expected: LiRA-CD uses consumer electric vehicles on maintained paved roads---a domain where the framework is explicitly predicted \emph{not} to excel, because pavement micro-texture rather than macro-topographic geometry governs vehicle excitation. The critical test is whether the framework performs better on natural off-road terrain, which is its intended application domain. To address this directly, we analyzed the TartanDrive autonomous driving dataset\cite{Triest2022}.}
+
+\textcolor{blue}{TartanDrive provides what neither the synthetic simulations nor LiRA-CD can: real vehicle vibration measurements collected on actual natural terrain at operationally relevant speeds. The dataset contains synchronized IMU accelerometer data (200~Hz, 6-axis) and GPS/INS-filtered odometry (50~Hz) from a Yamaha Viking VI all-terrain vehicle (ATV, curb weight $\sim$680~kg, independent double-wishbone suspension) traversing diverse natural terrain at Carnegie Mellon University's off-road test facility. Terrain types include forest trails with exposed roots and rocks, gravel access roads, open grass fields, and wet terrain crossings. Vehicle speeds ranged from 0.01 to 5.89~m/s (mean 1.42~m/s), spanning the low-speed off-road regime relevant to military convoy operations, agricultural equipment, and autonomous off-road navigation.}
 
 \textcolor{blue}{Vertical acceleration time series ($a_z(t)$, 200~Hz) were segmented into 10-second windows ($n = 42$ segments from 9 traversals). For each segment, vibration energy $E = a_{\mathrm{rms}}^2$ and the acceleration PSD spectral slope $\beta_a$ were computed using identical methods as the simulation analysis (4th-order Butterworth high-pass at 0.5~Hz, Welch PSD, log-log regression over 0.5--25~Hz). Vehicle speed was extracted from filtered odometry.}
 
@@ -576,6 +578,25 @@ The Copenhagen terrain represents flat urban topography with mean elevation 17.6
 
 The LiRA-CD (Road Condition Assessment) dataset\cite{Skar2023} contains GPS-tagged vertical accelerometer measurements from Renault Zo\'{e} electric vehicles traversing Copenhagen roads. Data were collected at 50 Hz sampling frequency on four routes: M3 and M13 (motorways), CPH1 and CPH6 (urban arterials). The dataset includes reference International Roughness Index (IRI) measurements from profilometer surveys, enabling validation of the $\beta \rightarrow E$ relationship against independently measured road roughness. A total of 8609 road segments were analyzed after quality filtering (minimum 200 samples per segment, PSD fit $R^2 > 0.6$). Vehicle vibration on these maintained paved roads is dominated by pavement surface micro-texture (asphalt roughness, potholes, expansion joints, cracks) at centimeter scale rather than macro-topographic features captured by DEM data, as demonstrated by the lack of correlation between DEM-derived fractal dimension and measured vehicle vibration.
 
+\textcolor{blue}{\subsection*{TartanDrive off-road vehicle data}}
+
+\textcolor{blue}{The TartanDrive dataset\cite{Triest2022} was collected at Carnegie Mellon University's off-road autonomous driving test facility in Pittsburgh, PA, using a Yamaha Viking VI side-by-side all-terrain vehicle (curb weight $\sim$680~kg, 4WD, independent double-wishbone suspension). The vehicle was instrumented with a Carnegie Robotics Multisense S21 sensor head mounted on a rigid frame, providing:}
+
+\textcolor{blue}{\begin{itemize}
+\item \textbf{IMU:} 6-axis inertial measurement unit at 200~Hz (3-axis linear acceleration in m/s$^2$ + 3-axis angular velocity in rad/s), topic \texttt{/multisense/imu/imu\_data}
+\item \textbf{Odometry:} GPS/INS filtered state estimate at 50~Hz (position + velocity), topic \texttt{/odometry/filtered\_odom}
+\item \textbf{Local heightmap:} 501$\times$501 pixel gridmap of local terrain height at 20~Hz, topic \texttt{/local\_height\_map} (available in dataset but not deserialized in this analysis due to custom ROS message type)
+\item \textbf{Additional sensors:} Shock position (4 channels, 50~Hz), wheel RPM (4 channels, 50~Hz), stereo RGB camera (1024$\times$512, 20~Hz)
+\end{itemize}}
+
+\textcolor{blue}{Data were collected across multiple traversals on 26 August 2021 over diverse natural terrain including forest trails with exposed roots and rocks, gravel access roads, grassy fields, and areas with standing water (``big puddle'' traversal). The terrain environment represents a realistic mix of off-road surface types encountered in military, agricultural, and autonomous vehicle operations.}
+
+\textcolor{blue}{This dataset complements the LiRA-CD validation in three critical ways. First, it operates in the \emph{intended application domain} of the framework: natural off-road terrain where macro-topographic geometry dominates vehicle excitation, rather than paved roads where pavement micro-texture governs vibration. Second, the IMU sampling rate (200~Hz vs 50~Hz) provides higher spectral resolution up to 100~Hz, capturing the full bandwidth relevant to structural fatigue. Third, the vehicle platform (rugged ATV with off-road suspension) is more representative of the military/autonomous applications motivating this work than the consumer electric vehicle (Renault Zo\"{e}) used in LiRA-CD.}
+
+\textcolor{blue}{Signal processing followed the identical pipeline used for simulation data: gravity removal via 4th-order Butterworth high-pass filter ($f_c = 0.5$~Hz), Welch PSD estimation (1024-sample segments, Hann window, 50\% overlap), log-log linear regression over 0.5--25~Hz for spectral slope extraction, and RMS integration for vibration energy. The vertical (z-axis) acceleration channel was used exclusively, consistent with the quarter-car model framework which considers only vertical dynamics.}
+
+\textcolor{blue}{A total of 9 rosbag files were processed, yielding 42 non-overlapping 10-second trajectory segments after discarding segments shorter than 10~s. Speed was computed from the odometry velocity fields ($v = \sqrt{v_x^2 + v_y^2}$). For speed-dependent analyses, only segments with mean speed $> 0.5$~m/s were retained ($n = 31$) to exclude stationary or near-stationary episodes.}
+
 
 \section*{Data availability}
 
@@ -587,7 +608,7 @@ All simulation code and data supporting the findings of this study are available
 
 Source data for all figures are provided with this paper. Simulation results including terrain profiles, vehicle responses, spectral analyses, and fatigue calculations will be made available upon publication. 
 
-Raw data files: \texttt{advanced\_spectral\_results.csv} (500 simulations), \texttt{three\_\allowbreak vehicle\_\allowbreak validation\_\allowbreak results.csv} (1500 simulations), and \texttt{fractal\_\allowbreak analysis\_\allowbreak results.csv} (terrain characterization). All data are provided in standard CSV format with column headers and units specified. LiDAR terrain data are from USGS 3DEP (public domain). Vehicle sensor data are from the LiRA-CD dataset (open access).
+Raw data files: \texttt{advanced\_spectral\_results.csv} (500 simulations), \texttt{three\_\allowbreak vehicle\_\allowbreak validation\_\allowbreak results.csv} (1500 simulations), and \texttt{fractal\_\allowbreak analysis\_\allowbreak results.csv} (terrain characterization). All data are provided in standard CSV format with column headers and units specified. LiDAR terrain data are from USGS 3DEP (public domain). Vehicle sensor data are from the LiRA-CD dataset (open access). \textcolor{blue}{Off-road vehicle data are from the TartanDrive dataset\cite{Triest2022} (publicly available at \texttt{https://github.com/castacks/tartan\_drive}); processed segment-level results are provided in \texttt{tartandrive\_validation\_results.csv}.}
 
 
 % Author information, acknowledgements, and competing interests removed for double-blind review

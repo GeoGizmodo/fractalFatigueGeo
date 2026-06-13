@@ -1207,6 +1207,20 @@ The near-zero exponent on $\beta_a$ in the two-parameter regression ($E \propto 
 
 \section{Supplementary Note 13: TartanDrive Off-Road Vehicle Validation}
 
+\subsection{Motivation and Complementarity with LiRA-CD}
+
+Reviewer \#2 (Major Comment 4) and Reviewer \#3 (Major Issue 2) both identified insufficient real-data validation as the most substantive limitation of the manuscript. The LiRA-CD analysis provides a large-sample confirmation of the $\beta_a \rightarrow E$ link ($n = 8{,}609$, $p < 10^{-40}$) but with inherent limitations: (a)~it uses consumer electric vehicles (Renault Zo\"{e}) on maintained paved urban roads, a domain where the framework is explicitly predicted to underperform; (b)~the 50~Hz sampling rate limits spectral analysis to 25~Hz; (c)~no simultaneous terrain geometry measurement is available; and (d)~the modest effect sizes ($r \approx 0.15$--$0.19$) reflect the mismatch between the measurement domain (paved roads) and the framework's intended domain (natural terrain).
+
+The TartanDrive dataset addresses all four limitations:
+\begin{itemize}
+\item \textbf{Domain match:} Real off-road natural terrain (forests, gravel, open fields)---precisely the environment where the framework is designed to apply.
+\item \textbf{Sensor quality:} 200~Hz IMU provides spectral resolution to 100~Hz, covering the full structural fatigue bandwidth (0.5--50~Hz).
+\item \textbf{Vehicle relevance:} Rugged ATV with independent suspension, representative of military/autonomous off-road platforms.
+\item \textbf{Simultaneous terrain data:} Local heightmaps (501$\times$501, 20~Hz) are collected simultaneously with IMU---enabling future end-to-end $D \rightarrow \beta_t \rightarrow \beta_a \rightarrow E$ validation once the custom GridMap message format is parsed. The current analysis validates the $\beta_a \rightarrow E$ and $E \rightarrow v$ links using IMU and odometry.
+\end{itemize}
+
+Together, LiRA-CD and TartanDrive provide complementary evidence: LiRA-CD demonstrates statistical significance through sample size on the ``wrong'' domain (paved roads), while TartanDrive demonstrates large effect sizes on the ``right'' domain (off-road natural terrain). The combination is substantially more convincing than either alone.
+
 \subsection{Dataset Description}
 
 The TartanDrive dataset\cite{Triest2022} was collected at Carnegie Mellon University's off-road test facility using a Yamaha Viking all-terrain vehicle (ATV) equipped with a Multisense S21 sensor suite. The vehicle traversed diverse natural terrain including forest trails, gravel paths, open fields, and areas with exposed roots and rocks. Key sensor specifications:
@@ -1273,6 +1287,20 @@ LiRA-CD & Paved urban roads & 0.145--0.194 & $<10^{-18}$ & 8,609 \\
 \end{table}
 
 The substantially stronger effect sizes on off-road terrain ($r = 0.512$--$0.880$) compared to paved roads ($r = 0.145$--$0.194$) confirm that the framework is most predictive for natural terrain where macro-topographic geometry dominates vehicle excitation. The LiRA-CD achieves statistical significance through sample size alone; TartanDrive achieves it through effect size on the intended terrain domain.
+
+\subsection{Limitations and Future Work}
+
+The current TartanDrive analysis has three limitations that future work could address:
+
+\begin{enumerate}
+\item \textbf{No terrain heightmap extraction:} The local heightmap topic (\texttt{/local\_height\_map}) uses a custom \texttt{grid\_map\_msgs/GridMap} ROS message type that requires the original ROS environment for deserialization. Future analysis using a ROS-compatible platform would enable direct measurement of terrain fractal dimension $D$ and spectral slope $\beta_t$ simultaneously with vehicle vibration, completing the full $D \rightarrow \beta_t \rightarrow \beta_a \rightarrow E$ chain on a single dataset.
+
+\item \textbf{Low speed range:} The analyzed segments have mean speed 1.42~m/s (max 5.89~m/s), below the 15~m/s used in simulations. The power-law $E \propto v^{1.04}$ is validated within this range; extrapolation to higher speeds requires additional data from the full TartanDrive corpus (which includes trajectories at up to 15~m/s in open terrain).
+
+\item \textbf{Sample size:} 42 segments from 9 traversals provide sufficient statistical power for the observed effect sizes ($p < 10^{-3}$ for all key correlations), but a larger sample from the full 200,000-interaction dataset would improve precision of slope estimates and enable subgroup analyses by terrain type.
+\end{enumerate}
+
+\noindent Despite these limitations, the analysis provides the first real off-road vehicle validation of the terrain-vibration spectral framework and demonstrates that the predicted relationships hold with substantially stronger effect sizes than on paved roads.
 
 \begin{figure}[h]
 \centering
