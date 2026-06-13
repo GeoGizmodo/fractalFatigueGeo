@@ -576,11 +576,11 @@ def generate_results(df):
         ax.legend(fontsize=9)
         ax.grid(True, alpha=0.3)
         
-        # Panel (d): Energy distribution by speed bins
+        # Panel (d): Log-log power law (v > 0.5 m/s only, matching text)
         ax = axes[1, 1]
         if 'mean_speed' in df_imu.columns:
             df_plot = df_imu.dropna(subset=['mean_speed'])
-            df_plot = df_plot[df_plot['mean_speed'] > 0.1]
+            df_plot = df_plot[df_plot['mean_speed'] > 0.5]
             if len(df_plot) > 0:
                 # Log-log scatter with regression line
                 log_v = np.log10(df_plot['mean_speed'].values)

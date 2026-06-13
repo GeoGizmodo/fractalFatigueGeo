@@ -159,7 +159,7 @@ def generate_figure3(df):
     SS_tot = np.sum((log_E - np.mean(log_E))**2)
     R2_combined = 1 - SS_res / SS_tot
     
-    categories = ['Terrain $D$\nonly', 'Vehicle type\nonly', 'Combined\n($D$ + Vehicle)']
+    categories = ['Synthetic terrain\nfactor ($D$)', 'Vehicle type\nonly', 'Combined\n($D$ + Vehicle)']
     values = [R2_terrain * 100, R2_vehicle * 100, R2_combined * 100]
     bar_colors = ['#2196F3', '#FF9800', '#4CAF50']
     
