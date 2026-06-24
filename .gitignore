@@ -1,30 +1,37 @@
-# LaTeX build artifacts
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# LaTeX / Manuscript (not for code repo)
+*.tex
 *.aux
 *.log
 *.out
 *.pdf
+*.txt
 *.synctex.gz
-texput.log
 
-# Large data files (not for repo)
+# OS
+.DS_Store
+Thumbs.db
+
+# Data too large for git
 tartan_drive/
 tartandrive_extracted/
+tartandrive_torch/
 _tmp_bag/
 *.tar.gz
-
-# Python
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
+*.bag
+*.zip
+*.rosbag
 
 # IDE
 .vscode/
 .idea/
 
-# OS
-Thumbs.db
-.DS_Store
-
-# Extracted text (generated)
-*.txt
-!cover_letter.txt
+# Keep these (override above txt/csv exclusions)
+!requirements.txt
+!*.csv
+!README.md
