@@ -80,7 +80,7 @@ ax2.text(-0.12, 1.05, '(b)', transform=ax2.transAxes,
 ax3 = fig.add_subplot(gs[1, 0])
 n_points = 100
 C_z_range = np.logspace(-4, -2, n_points)
-beta_values = [2.5, 3.0, 3.5]
+beta_values = [2.0, 2.5, 3.0]
 colors_beta = ['blue', 'green', 'red']
 
 for beta, color in zip(beta_values, colors_beta):
