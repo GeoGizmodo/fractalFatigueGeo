@@ -1,8 +1,37 @@
+# Python
 __pycache__/
 *.py[cod]
+venv/
+.venv/
+
+# LaTeX / Manuscript (not for code repo)
+*.tex
 *.aux
 *.log
 *.out
-*.zip
+*.pdf
+*.txt
+*.synctex.gz
+
+# OS
 .DS_Store
-venv/
+Thumbs.db
+
+# Data too large for git
+tartan_drive/
+tartandrive_extracted/
+tartandrive_torch/
+_tmp_bag/
+*.tar.gz
+*.bag
+*.zip
+*.rosbag
+
+# IDE
+.vscode/
+.idea/
+
+# Keep these (override above txt/csv exclusions)
+!requirements.txt
+!*.csv
+!README.md
