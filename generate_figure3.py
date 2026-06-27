@@ -88,9 +88,9 @@ def generate_figure3(df):
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.5))
     
     colors = {
-        'Vehicle A': '#1f77b4',  # blue
-        'Vehicle B': '#ff7f0e',  # orange
-        'Vehicle C': '#2ca02c',  # green
+        'Vehicle A': '#0072B2',  # blue (CVD-safe)
+        'Vehicle B': '#D55E00',  # vermillion (CVD-safe)
+        'Vehicle C': '#CC79A7',  # pink (CVD-safe)
     }
     
     # -------------------------------------------------------------------------

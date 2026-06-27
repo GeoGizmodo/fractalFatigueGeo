@@ -81,7 +81,7 @@ ax3 = fig.add_subplot(gs[1, 0])
 n_points = 100
 C_z_range = np.logspace(-4, -2, n_points)
 beta_values = [2.0, 2.5, 3.0]
-colors_beta = ['blue', 'green', 'red']
+colors_beta = ['#0072B2', '#D55E00', '#CC79A7']  # CVD-safe: blue, vermillion, pink
 
 for beta, color in zip(beta_values, colors_beta):
     E = 1e6 * C_z_range**0.94 * beta**(-0.09)
