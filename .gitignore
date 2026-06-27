@@ -1,23 +1,24 @@
-# Python
-__pycache__/
-*.py[cod]
-venv/
-.venv/
-
-# LaTeX / Manuscript (not for code repo)
+# LaTeX manuscripts and review documents (NOT for public repo)
 *.tex
 *.aux
 *.log
 *.out
 *.pdf
-*.txt
 *.synctex.gz
+texput.log
+reviewer_responses/
+revision_submission/
+cover_letter.*
+docs/
+arxiv_*
 
-# OS
-.DS_Store
-Thumbs.db
+# Python bytecode
+__pycache__/
+*.py[cod]
+venv/
+.venv/
 
-# Data too large for git
+# Large data files
 tartan_drive/
 tartandrive_extracted/
 tartandrive_torch/
@@ -27,11 +28,23 @@ _tmp_bag/
 *.zip
 *.rosbag
 
+# OS
+.DS_Store
+Thumbs.db
+
 # IDE
 .vscode/
 .idea/
 
-# Keep these (override above txt/csv exclusions)
+# Misc
+lower
+reference_audit.csv
+extract_pdf_text.py
+check_usgs_stats.py
+create_source_data.py
+
+# Keep these explicitly
 !requirements.txt
-!*.csv
 !README.md
+!*.csv
+!figures/*.png
