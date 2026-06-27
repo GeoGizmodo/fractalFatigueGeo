@@ -1,112 +1,143 @@
 # Spectral Scaling of Natural-Terrain-Induced Fatigue
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Code and data repository for reproducing all results in the manuscript.
 
-Code and data for reproducing all analyses in the manuscript *"Spectral scaling of natural-terrain-induced fatigue"* (under review).
+## 1. System Requirements
 
----
+### Software Dependencies
+- Python 3.8 or higher
+- NumPy >= 1.24.0
+- SciPy >= 1.10.0
+- Matplotlib >= 3.7.0
+- Pandas >= 2.0.0
+- Requests >= 2.28.0 (for USGS DEM downloads)
+- Pillow >= 9.0.0 (for DEM image processing)
+- openpyxl >= 3.1.0 (for Source Data Excel generation)
 
-## Overview
+### Operating Systems
+Tested on:
+- Windows 10/11 (Python 3.9, Anaconda)
+- Ubuntu 22.04 (Python 3.10)
 
-This repository implements a two-parameter spectral framework connecting terrain geometry to vehicle vibration severity and fatigue-risk scaling. The framework uses:
+### Non-standard Hardware
+None required. All computations run on standard desktop hardware.
 
-- **Amplitude (C_z)**: PSD amplitude at unit wavenumber (m³/rad)
-- **Spectral slope (β)**: Linked to terrain fractal dimension via β_t = 7 − 2D
+## 2. Installation Guide
 
-## Key Results
-
-| Analysis | Result |
-|----------|--------|
-| Two-parameter model | E ∝ C_z^0.94 × β_a^−0.09 (R² = 0.96) |
-| Terrain dominance (3 vehicles) | 93.5% of energy variance explained by terrain |
-| 100-vehicle ensemble | γ = −2.34 ± 0.19, CV = 8.1% |
-| Fatigue:energy ratio | 2.00 ± 0.01 (validates Basquin m = 4) |
-| Constant-amplitude decoupling | R² = 0.834 (β independent of C_z) |
-| USGS 3DEP LiDAR (13 tiles) | r = −0.62, p < 0.05 |
-| LiRA-CD vehicle sensors (8,609 segs) | r = +0.194, p < 10⁻¹⁸ |
-| TartanDrive off-road ATV (42 segs) | r = 0.512, p < 10⁻³ |
-| TartanDrive speed scaling | E ∝ v^1.04, r = 0.880 |
-
-## Repository Structure
-
-```
-├── code/
-│   ├── simulations/
-│   │   ├── sim_constant_amplitude_decoupling.py   # Decoupling experiment (new)
-│   │   ├── fractal_terrain_generator.py           # Diamond-Square terrain
-│   │   ├── vehicle_dynamics_simulator.py          # 2-DOF quarter-car
-│   │   └── fatigue_analysis.py                    # Rainflow + Miner's rule
-│   ├── validation/
-│   │   ├── analyze_tartandrive.py                 # TartanDrive analysis
-│   │   ├── extract_and_analyze_tartandrive.py     # TartanDrive extraction
-│   │   ├── expand_usgs_validation.py              # USGS 3DEP expansion
-│   │   └── fixed_terrain_validation.py            # LiDAR terrain validation
-│   └── figures/
-│       ├── generate_figure1.py                    # Figure 1 (framework)
-│       ├── generate_figure3.py                    # Figure 3 (energy scaling)
-│       ├── regenerate_figure6.py                  # Figure 6 (domain boundary)
-│       └── regenerate_tartandrive_figure.py       # TartanDrive figure
-├── data/
-│   ├── tartandrive_validation_results.csv         # TartanDrive processed results
-│   ├── constant_amplitude_results.csv             # Decoupling experiment
-│   └── three_vehicle_validation_results.csv       # 1500 simulations
-├── figures/                                       # Generated figures (PNG)
-├── requirements.txt
-└── README.md
-```
-
-## Installation
-
+### Instructions
 ```bash
+git clone https://anonymous.4open.science/r/fractalFatigueGeo-4834/
+cd fractalFatigueGeo
 pip install -r requirements.txt
 ```
 
-## TartanDrive Validation
+### Typical Install Time
+< 2 minutes on a normal desktop computer (dependencies only).
 
-The TartanDrive analysis validates the framework on real off-road terrain:
+## 3. Demo
+
+### Instructions to Run
+```bash
+# Generate all main figures (uses pre-computed CSV data)
+python generate_figure1.py          # Figure 1: Theoretical framework
+python generate_figure3.py          # Figure 3: Energy scaling + variance decomposition
+python regenerate_figure6.py        # Figure 6: Domain boundary (USGS + Copenhagen)
+python regenerate_tartandrive_figure.py  # Supp Figure 5: TartanDrive validation
+
+# Run the constant-amplitude decoupling experiment (Supp Figure 4)
+python sim_constant_amplitude_decoupling.py
+
+# Run the USGS 25-region terrain validation (Figure 6a)
+# NOTE: requires internet connection for DEM downloads on first run
+python expand_usgs_validation.py
+```
+
+### Expected Output
+- `figures/Figure1.png` — 4-panel theoretical framework
+- `figures/Figure3.png` — Energy vs D scatter + variance decomposition
+- `figures/Figure6.png` — Domain boundary comparison (USGS vs Copenhagen)
+- `figures/tartandrive_validation.png` — TartanDrive 4-panel validation
+- `figures/constant_amplitude_decoupling.png` — Decoupling experiment results
+- `figures/usgs_25region_validation.png` — USGS 25-region scatter
+- `constant_amplitude_results.csv` — 449-simulation decoupling data
+- `expanded_terrain_validation.csv` — 25-region USGS results
+
+### Expected Run Time (Demo)
+- Figure generation from pre-computed CSVs: < 10 seconds each
+- `sim_constant_amplitude_decoupling.py`: ~2–5 minutes (450 vehicle simulations)
+- `expand_usgs_validation.py`: ~5–10 minutes (downloads 25 DEM tiles from USGS; cached after first run)
+
+## 4. Instructions for Use
+
+### Running on Your Own Data
+
+**To analyze a new terrain DEM:**
+1. Prepare a GeoTIFF or numpy array of elevation data
+2. Extract 1D profiles (rows or along-track)
+3. Use functions from `expand_usgs_validation.py`:
+   - `fractal_dim_1d(profile, dx)` — computes variogram-based D₁
+   - `psd_slope(profile, dx)` — computes Welch PSD spectral exponent β_t
+
+**To analyze new vehicle IMU data:**
+1. Prepare vertical acceleration time series (≥ 100 Hz recommended)
+2. Use functions from `extract_and_analyze_tartandrive.py`:
+   - `compute_vibration_energy(imu_z, fs)` — returns E and β_a
+   - `compute_terrain_spectral_slope(profile)` — returns β_t from heightmap
+
+### Reproduction Instructions
+
+To reproduce ALL quantitative results in the manuscript:
 
 ```bash
-# Option 1: Regenerate figure from processed CSV (no raw data needed)
-python code/figures/regenerate_tartandrive_figure.py
+# Step 1: Generate simulation data (if CSVs not present)
+# The pre-computed CSVs are included in the repository.
+# To regenerate from scratch, run the original simulation scripts
+# (requires the full simulation codebase in code/ directory)
 
-# Option 2: Full analysis from raw data (requires TartanDrive download)
-# See: https://github.com/castacks/tartan_drive
-python code/validation/extract_and_analyze_tartandrive.py \
-    --tar_file path/to/20210826_heightmaps_1.tar.gz --max_bags 50
+# Step 2: Run USGS validation (downloads real terrain data)
+python expand_usgs_validation.py
+
+# Step 3: Generate all figures
+python generate_figure1.py
+python generate_figure3.py
+python regenerate_figure6.py
+python sim_constant_amplitude_decoupling.py
+python regenerate_tartandrive_figure.py
+
+# Step 4: Verify statistics
+python check_usgs_stats.py
+
+# Step 5: Generate Source Data Excel
+pip install openpyxl
+python create_source_data.py
 ```
 
-Results (42 segments, Yamaha Viking ATV, natural terrain):
-- Energy–spectral slope: r = 0.512, p = 5.4 × 10⁻⁴
-- Speed scaling: E ∝ v^1.04, r = 0.852, p = 1.2 × 10⁻⁹
-- β_a speed-independent: r = 0.193, p = 0.30
+## Data Files
 
-## Constant-Amplitude Decoupling Experiment
+| File | Description | n |
+|------|-------------|---|
+| `three_vehicle_validation_results.csv` | 1500-simulation results (3 vehicles × 5 D × 100 realizations) | 1500 |
+| `constant_amplitude_results.csv` | Constant-amplitude decoupling experiment | 449 |
+| `expanded_terrain_validation.csv` | USGS 3DEP 25-region terrain analysis | 25 |
+| `tartandrive_validation_results.csv` | TartanDrive off-road ATV segments | 42 |
+| `dem_cache/*.npy` | Cached USGS DEM tiles (25 regions) | 25 |
 
-Demonstrates that spectral slope independently affects vibration energy:
+## Code Description
 
-```bash
-python code/simulations/sim_constant_amplitude_decoupling.py
-```
+The computational pipeline implements:
+1. **Fractal terrain generation** — Diamond-Square algorithm with target fractal dimension D
+2. **Vehicle dynamics** — 2-DOF quarter-car model, 4th-order Runge-Kutta integration (Δt = 0.001s)
+3. **Spectral analysis** — Welch PSD estimation, log-log regression for β extraction
+4. **Fatigue analysis** — Rainflow cycle counting, Basquin's law (S-N curve), Miner's rule
+5. **Terrain validation** — USGS 3DEP DEM download, variogram-based D₁ estimation
+6. **Vehicle validation** — TartanDrive rosbag IMU extraction, segment-level analysis
 
-Result: R² = 0.834 at constant amplitude (energy increases with D, opposite to coupled case).
-
-## Data Sources
-
-| Dataset | Access |
-|---------|--------|
-| Synthetic fBm terrain | Generated by code in this repo |
-| USGS 3DEP LiDAR | [USGS National Map](https://apps.nationalmap.gov/downloader/) |
-| LiRA-CD vehicle sensors | [Open access](https://doi.org/10.1016/j.dib.2023.109142) |
-| TartanDrive off-road | [GitHub](https://github.com/castacks/tartan_drive) |
-
-## Citation
-
-If you use this code, please cite:
-
-```
-[Citation will be added upon publication]
-```
+Detailed algorithmic description is provided in the Methods section and Supplementary Notes 1–13 of the manuscript.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT License
+
+## Citation
+
+[To be added upon publication]
